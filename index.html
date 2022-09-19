@@ -1,61 +1,263 @@
 <!-- html5  -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Reponsive UI -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO -->
     <title>Document</title>
 
     <!-- SEO -->
-    <meta name="description" content="">
+    <meta name="description" content="" />
 
     <!-- SEO -->
-    <meta name="keywords" content="javascript, react, react trainer">
+    <meta name="keywords" content="javascript, react, react trainer" />
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-    <meta name="apple-mobile-web-app-title" content="page title">
+    <meta name="apple-mobile-web-app-title" content="page title" />
 
-    <meta name="apple-mobile-web-app-orientations" content="portrait-any">
-
+    <meta name="apple-mobile-web-app-orientations" content="portrait-any" />
 
     <!-- derived by facebook -->
     <meta property="og:title" content="How to Become an SEO Expert (8 Steps)" />
 
-    <meta property="og:url" content="https://ahrefs.com/blog/open-graph-meta-tags/" />
+    <meta
+      property="og:url"
+      content="https://ahrefs.com/blog/open-graph-meta-tags/"
+    />
 
     <meta property="og:type" content="website" />
-    
-    <meta property="og:description" content="Get from SEO newbie to SEO pro in 8 simple steps." />
-    
-    <meta property="og:image" content="https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png" />
 
-    
+    <meta
+      property="og:description"
+      content="Get from SEO newbie to SEO pro in 8 simple steps."
+    />
+
+    <meta
+      property="og:image"
+      content="https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png"
+    />
+
     <meta name="twitter:card" content="summary" />
 
     <meta name="twitter:site" content="@nytimesbits" />
-    
+
     <meta name="twitter:creator" content="@nickbilton" />
 
-    <meta property="og:url" content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/" />
-    
-    <meta property="og:title" content="A Twitter for My Sister" />
-    
-    <meta property="og:description" content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling." />
-    
-    <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
+    <meta
+      property="og:url"
+      content="http://bits.blogs.nytimes.com/2011/12/08/a-twitter-for-my-sister/"
+    />
 
-    <link rel="icon" href="./favicon.ico" sizes="any">
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-</head>
-<body>
+    <meta property="og:title" content="A Twitter for My Sister" />
+
+    <meta
+      property="og:description"
+      content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling."
+    />
+
+    <meta
+      property="og:image"
+      content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg"
+    />
+
+    <link rel="icon" href="./favicon.ico" sizes="any" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <form>
+      <div>
+        <label for="txtFirstName">FirstName</label>
+        <input
+          type="text"
+          id="txtFirstName"
+          aria-label="FirstName"
+          autocomplete="given-name"
+          required
+        />
+      </div>
+      <div>
+        <label for="txtLastName">LastName</label>
+        <input
+          type="text"
+          id="txtLastName"
+          aria-label="LastName"
+          autocomplete="family-name"
+        />
+      </div>
+
+      <div>
+        <label for="txtEmail">Email</label>
+        <input
+          type="email"
+          id="txtEmail"
+          aria-label="Email"
+          autocomplete="email"
+        />
+      </div>
+
+      <div>
+        <label for="txtPassword">Password</label>
+        <input
+          type="password"
+          id="txtPassword"
+          aria-label="Password"
+          autocomplete="new-password"
+        />
+      </div>
+
+      <div>
+        <label for="txtAge">Age</label>
+        <input type="number" id="txtAge" aria-label="Name" />
+      </div>
+
+      <!-- <div>
+        <label for="txtBirthDate">BirthDate</label>
+        <input type="date" id="txtBirthDate" aria-label="BirthDate" autocomplete="bday" />
+      </div> -->
+
+      <div>
+        <label for="txtBirthDate">BirthDate</label>
+        <input
+          type="datetime-local"
+          id="txtBirthDate"
+          aria-label="BirthDate"
+          autocomplete="bday"
+        />
+      </div>
+
+      <div>
+        <label for="txtColor">Color</label>
+        <input
+          type="color"
+          id="txtColor"
+          aria-label="Color"
+          autocomplete="bday"
+        />
+      </div>
+
+      <fieldset>
+        <legend>Gender</legend>
+        <div>
+          <input type="radio" name="gender" id="genderMale" checked />
+          <label for="genderMale">Male</label>
+        </div>
+        <div>
+          <input type="radio" name="gender" id="genderFemale" />
+          <label for="genderFemale">Female</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Hobbies</legend>
+        <div>
+          <input type="checkbox" name="hobbies" id="hobbiesCricket" checked />
+          <label for="hobbiesCricket">Cricket</label>
+        </div>
+        <div>
+          <input type="checkbox" name="hobbies" id="hobbiesFootball" />
+          <label for="hobbiesFootball">Football</label>
+        </div>
+      </fieldset>
+
+      <select>
+        <option value="">Please Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      <select>
+        <optgroup label="Sports">
+          <option value="cricket">Cricket</option>
+          <option value="football">Football</option>
+        </optgroup>
+        <optgroup label="Activity">
+            <option value="dancing">Dancing</option>
+            <option value="singing">Singing</option>
+            <option value="painting">Painting</option>
+          </optgroup>
+      </select>
+
+      <div>
+        <input type="text" list="colleges">
+
+        <datalist id="colleges">
+            <option>Abc College</option>
+            <option>pqr College</option>
+            <option>lmn College</option>
+        </datalist>
+
+        <div>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </div>
+
+    <div>
+        <input type="range" name="" id="" min="10" max="100" multiple>
+    </div>
+
+    <div>
+        <meter min="0" max="100" low="30" high="60" value="61" />
+    </div>
+
+      </div>
+
+      <!-- <div>
+        <label for="txtFile">File</label>
+        <input type="file" id="txtFile" aria-label="File" autocomplete="bday"  accept="image/png, image/jpeg" multiple />
+      </div> -->
+
+      <!-- <div>
+        <input type="search" />
+      </div>
+
+      <div>
+        <input type="tel" autocomplete="tel" />
+      </div> -->
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- what is use of any tag -->
+    <!--  -->
+    <!-- UI -->
+    <!-- SEO -->
+    <!-- accesibility -->
+    <!-- <h1>hello</h1>
+    <p>Lorem, <em>ipsum</em>  <strong>sit</strong> amet consectetur adipisicing elit. Dignissimos culpa ullam voluptate eius autem porro obcaecati quasi eaque quidem minima quae laboriosam itaque numquam possimus, tempore ex eos. Ab, natus?</p>
     
-</body>
+    <label for="xyz">Todo Text</label>
+    <input type="text" id="xyz"> -->
+
+    <!-- per html page we can have only and only 1 h1 tag -->
+
+    <!-- inline elements -->
+
+    <!-- <span>hello</span><em>asdfda</em> -->
+
+    <!-- block elements -->
+    <!-- <h1 style="font-size: 24px;">hello</h1>
+    <h2 style="font-size: 36px;">how are you</h2>
+    <p>Lorem ipsum dolor sit amet.</p> -->
+
+    <!-- semantic elements -->
+
+    <!-- <header></header>
+    <nav></nav>
+    <main></main>
+    <section></section>
+    <article></article>
+    <address></address>
+    <footer></footer>
+    <details>
+        <summary>hello</summary>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis doloremque architecto at quae totam consequatur vero dolores, reprehenderit tempore aut consectetur, officia nostrum molestias voluptates sed saepe dolor dolorum! Est.</p>
+    </details> -->
+  </body>
 </html>
