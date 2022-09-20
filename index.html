@@ -38,26 +38,215 @@
     <title>Document</title>
 </head>
 <body>
+
+
+    <h1>Welcome to my web page</h1>
+    <form action="Sign up Page">
+        <div>
+            <label for="FirstName">FirstName</label>
+            <input type="text" id="FirstName" >
+            <label for="lastname">LastName</label>
+            <input type="text" id="lastname">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email">
+        </div>
+        <div>
+            <label for="password">Choose password</label>
+            <input type="password" aria-label="password" autocomplete="new-password">
+            <label for="Repeatpassword">Repeat password</label>
+            <input type="password" aria-label="password">
+
+        </div>
+        <fieldset>
+            gender
+            <div>
+                <label for="gender">select your gender</label>
+                <select name="gender" id="gender">
+                    <option value="none">select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+        </fieldset>
+        
+        <div>
+            <label for="birthday">Birthday</label>
+            <input type="date" id="birthday" aria-label="birth">
+        </div>
+        <div>
+            <label for="txtColor">color</label>
+            <input type="color" id="birthday" aria-label="birth">
+        </div>
+        <div>
+            <label for="picture">pasport size photo</label>
+            <input type="file" id="picture" accept="image/jpeg, image/png" multiple>
+        </div>
+        <div>
+            <input type="search">
+        </div>
+        <fieldset>
+            <legend>AccountType</legend>
+                <div>
+                    <input type="radio" id="currentAccount" name="drone" value="currentAccount"
+                        checked>
+                    <label for="currentAccount">current Account</label>
+                </div>
+            
+                <div>
+                    <input type="radio" id="SavingAccount" name="drone" value="SavingAccount">
+                    <label for="SavingAccount">Saving Acchobbies</label>
+                </div>
+        </fieldset>
+        <fieldset>
+            <legend>hobbies</legend>
+            <div>
+                <input type="checkbox" id="hobbiescricket" name="drone" value="hobbiescricket">
+                <label for="hobbiescricket">cricket</label>
+              </div>
+          
+              <div>
+                <input type="checkbox" id="hobbiesfootball" name="drone" value="hobbiesfootball">
+                <label for="hobbiesfootball">football</label>
+              </div>
+        </fieldset>
+        <select multiple>
+            <optgroup label="sport">
+                <option value="football">football</option>
+                <option value="cricket">cricket</option>
+                <option value="volyball">volyball</option>
+            </optgroup>
+            <optgroup label="Activity">
+                <option value="lol">lol</option>
+                <option value="swimming">swimming</option>
+                <option value="volentry">volentry</option>
+            </optgroup>
+        </select>
+        <div>
+            <input type="text" list="collages">
+            <datalist id="collages">
+                <option>abc college</option>
+                <option>lmn college</option>
+            </datalist>
+        </div>
+        <div>
+            <label for="describe your self">describe somthing about you </label>
+            <textarea name="describe your self" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="range" min="10" max="80">
+            <label for="volume">volume</label>
+        </div>
+        <div>
+            <meter min="0" max="100" low="30" high="70" optimum="60" value="30" > 
+        </div>
+
+    </form>
+    
+    
+
+
+
+
+
+
+
+
+    <!-- <form action="login page">
+        <div>
+            <label for="txtFirstname">Firstname</label>
+            <input type="text" id="txtFirstname" aria-label="Firstname" autocomplete="give-name">
+        </div>
+        <div>
+            <label for="txtLastname">Lasttname</label>
+            <input type="text" id="txtLastname" aria-label="Lastname" autocomplete="additional-name">
+        </div>
+        <div>
+            <label for="Email">   Email</label>
+            <input type="email" id=" txtEmail" aria-label="name" autocomplete="email">
+        </div>
+        <div>
+            <label for="txtage">Age</label>
+            <input type="number">
+        </div>
+        <div>
+            <label for="txtCOlor">Color</label>
+            <input type="color" id="txtColor" aria-label="color" autocomplete="baby">
+        </div>
+        <div>
+            <label for="txtFile">File</label>
+            <input type="file" id="txtFile" aria-label="file" autocomplete="bday" accept="image/png , imagejpeg">
+        </div>
+        <fieldset>
+        <legend>gender</legend>
+        <div>
+            <input type="radio" name="gender" id="gendermale">
+            <label for="gendermale">male</label>
+        </div>
+        <div>
+            <input type="radio" name="gender" id="genderfemale" >
+            <label for="genderfemale">male</label>
+        </div>
+    </fieldset>
+        <div>
+            <button>login</button>
+        </div>
+        
+    <select name="please select an option" id=" gender">
+        <option value="gender">please select gender</option>
+        <option value="gender"> male</option>
+        <option value="gender"> female</option>
+    </select>
+    <div>
+        <select name="college name" id="college">
+            <input type="text" list="colleges">
+            <datalist id="colleges">
+                <option value="abc college">abc college</optio
+                <option></option> value="cbcd college">abdc college</option>
+                <option value="">abcds college</option>
+                <option value="">abcgh college</option>
+            </datalist>
+        </select>
+            
+    </div> -->
+
+
+        <!-- <div>
+            <input type="search">
+        </div>
+       
+        <div>
+            <button>search</button>
+        </div>
+        <div>
+            <input type="tel">
+        </div>
+         -->
+        <!-- <label for="txtName">Name</label> -->
+
+
+    <!-- </form> -->
     <!-- what is use of any any every tag is useful for UI, some of the tag is use for SEO(em and strong, ancher , images, address, details italic tags is use for SEO )  -->
     <!-- UI --> 
     <!-- accessibility -->
-    <p> Lorem <em> Lorem, ipsum.</em>ipsum <strong> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos neque beatae et dolores? Dolores, id nulla! Esse, dolores minus dolor commodi sint ratione rem nesciunt sit expedita vel totam officia?</strong> dolor sit amet consectetur adipisicing elit. Repellat sequi corporis omnis quasi assumenda et consequatur unde ipsa! Doloribus est quasi perspiciatis, recusandae maiores aspernatur saepe iusto expedita sunt ea.</p>
-    <h2> i am a boy </h2> <!--H1 is for seo-->
+    <!-- <p> Lorem <em> Lorem, ipsum.</em>ipsum <strong> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos neque beatae et dolores? Dolores, id nulla! Esse, dolores minus dolor commodi sint ratione rem nesciunt sit expedita vel totam officia?</strong> dolor sit amet consectetur adipisicing elit. Repellat sequi corporis omnis quasi assumenda et consequatur unde ipsa! Doloribus est quasi perspiciatis, recusandae maiores aspernatur saepe iusto expedita sunt ea.</p>
+    <h2> i am a boy </h2> H1 is for seo -->
 
 
-    <h1> hello </h1>
+    <!-- <h1> hello </h1>
         <h2>
-            <h3>
+            <h3> -->
                 <!-- inline element come side by sien and block element are take whole width -->
-            </h3>
+            <!-- </h3>
         </h2>
     <h2> hello</h2>
     <h3>hello</h3>
     <h4>hello</h4>
     <h5>hello</h5>
-    <h6>hello</h6>
+    <h6>hello</h6> -->
     <!-- sementic element -  -->
-    <ul>
+    <!-- <ul>
         <li>
 
         </li>
@@ -68,12 +257,7 @@
     </address>
     <details>
         <summary>visit again</summary>
-    </details>
-
-    <label for="xyz"> todo text </label>
-    <input type="text"  id ="xyz">
-    <input type="text" placeholder=" write your todo here">
-
+    </details> -->
 
     
 
