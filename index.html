@@ -72,7 +72,7 @@
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <form>
+    <form novalidate>
       <div>
         <label for="txtFirstName">FirstName</label>
         <input
@@ -81,6 +81,8 @@
           aria-label="FirstName"
           autocomplete="given-name"
           required
+          minlength="2"
+          maxlength="16"
         />
       </div>
       <div>
@@ -100,6 +102,7 @@
           id="txtEmail"
           aria-label="Email"
           autocomplete="email"
+          pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}"
         />
       </div>
 
