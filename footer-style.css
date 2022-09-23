@@ -1,0 +1,26 @@
+.dummy-text{
+    text-align: justify;
+    margin: 0 40px 0 40px;
+}
+      .footer__nav {
+        display: flex;
+        justify-content: space-evenly;
+        
+       
+      }
+      .nav__item{
+       list-style-type: none;
+      }
+      .nav__item .nav__item__list{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav__item .nav__item__list a{
+        text-decoration: none;
+      }
+      .nav__pages .nav__item__list {
+        column-count: 2;
+        column-gap: 1.25em;
+        
+      }
