@@ -146,7 +146,7 @@
             }
         } */
 
-      .wrapper {
+      /* .wrapper {
         height: 100px;
         width: 100px;
         background-color: coral;
@@ -188,16 +188,72 @@
         .wrapper {
             background-color: cyan;
         }
+      } */
+
+      .wrapper {
+        /* display: flex; */
+        /* flex-direction: row; */
+        /* background-color: yellow; */
+        /* justify content will workn on x axis when flex direction is row */
+        /* justify content will workn on y axis when flex direction is column */
+        /* justify-content: space-between; */
+
+        /* justify content will workn on x axis when flex direction is column */
+        /* justify content will workn on y axis when flex direction is row */
+        /* align-items: center; */
+
+        /* flex-wrap: wrap; */
+        /* height: 100vh; */
+        /* align content will work only when flex wrap */
+        /* direction: row then aligh content will work on y axis */
+        /* direction: coloum then aligh content will work on x axis */
+        /* align-content: center; */
       }
 
-    
+      /* flex css */
+      .box {
+        /* height: 100px; */
+        /* width: 100px;
+        background-color: red;
+        margin: 1rem; */
+      }
 
+      header {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      header a {
+        margin: 0 1rem;
+      }
 
     </style>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="box">Lorem, ipsum.</div>
-    </div>
+    <header>
+      <h1>Logo</h1>
+      <nav>
+        <a href="">Home</a>
+        <a href="">About</a>
+        <a href="">Projects</a>
+        <a href="">Blog</a>
+        <a href="">Contact</a>
+      </nav>
+      <address>
+        <a href="mailto:yagnesh.modh@gmail.com">yagnesh.modh@gmail.com</a>
+      </address>
+    </header>
+
+    
+
+    
   </body>
 </html>
+
+<!-- if flex direction is row and i want y axios alignment -->
+<!-- align-Item: strech  -->
+
+<!-- if box size is 100 x 100 i dont want reduce box size -->
+<!-- flex-wrap: wrap -->
+
