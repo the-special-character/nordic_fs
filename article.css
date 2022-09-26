@@ -1,0 +1,27 @@
+section{
+    width: 1280px;
+    margin: 0 auto;
+}
+#article-sec{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 405px;
+    justify-content: space-evenly;
+    gap: 2rem;
+    margin-top: 20px;
+}
+#article-sec > div{
+        background-color: antiquewhite;
+        padding: 90px;
+}
+#article-sec > div:nth-child(1){
+    background-color: goldenrod;
+}
+#article-sec > div:nth-child(2){
+    background-color: cyan;
+}
+#article-sec > div:nth-child(3){
+    background-color: tomato;
+}
