@@ -1,0 +1,48 @@
+main {
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+main > section#portfolio-grid {
+    margin: 1rem;
+}
+
+
+main > section#portfolio-grid > h1 {
+    text-align: center;
+    margin: 4rem 0;
+}
+
+main > section#portfolio-grid > div.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, 300px);
+    gap: 1rem;
+
+}
+
+main > section#portfolio-grid > div.wrapper > div {
+    background-color: tomato;
+}
+/* body{
+    display: grid;
+    grid-template: "header header" 1fr
+            "aside main" 5fr
+            "footer footer" 1fr / 1fr 4fr;
+}
+header{
+    grid-area: header;
+    background-color: red;
+}
+aside{
+    grid-area: aside;
+    background-color: cyan;
+}
+main{
+    grid-area: main;
+    border-color: blue;
+}
+footer{
+    grid-area: footer;
+    background-color: tomato;
+} */
