@@ -1,0 +1,26 @@
+main {
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+main > section#portfolio-grid {
+    margin: 1rem;
+}
+
+
+main > section#portfolio-grid > h1 {
+    text-align: center;
+    margin: 4rem 0;
+}
+
+main > section#portfolio-grid > div.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2, 300px);
+    gap: 1rem;
+
+}
+
+main > section#portfolio-grid > div.wrapper > div {
+    background-color: red;
+}
