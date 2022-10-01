@@ -70,194 +70,152 @@
 
     <link rel="icon" href="./favicon.ico" sizes="any" />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <link
+      rel="stylesheet"
+      href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
+    />
+
+    <style>
+      /* header a {
+        color: red;
+      } */
+
+      /* space */
+      /* > */
+      /* + */
+      /* ~ */
+
+      /* 1 0 0 */
+      /* id */
+
+      /* 0 1 0 */
+      /* class */
+
+      /* 0 0 1 */
+      /* element */
+
+      /* space */
+      /* > */
+      /* + */
+      /* ~ */
+
+      /* li,
+      h3 {
+        color: blueviolet;
+      } */
+
+      /* imidiate children of section */
+      /* section > ul {
+        background-color: red;
+      } */
+
+      /* any ul inside of section */
+      /* section ul {
+        background-color: red;
+      } */
+
+      /* immidiate sibling */
+      /* h2 + p {
+        color: blue;
+      } */
+
+      /* all the p tag after h2 */
+      /* h2 ~ p {
+        color: green;
+      } */
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background-color: #f5f5f5;
+        width: 100%;
+      }
+
+      section {
+        padding: 16px;
+        height: 100vh;
+        border: 5px solid violet;
+        position: relative;
+      }
+
+      section > div {
+        height: 100px;
+        width: 100px;
+      }
+
+      /* pschudo-class */
+      section > div:nth-child(1) {
+        background-color: red;
+        color: #fff;
+      }
+
+      section > div:nth-child(2) {
+        background-color: green;
+        color: #fff;
+        position: absolute;
+        top: 50px;
+        left: 50px;
+      }
+
+      section > div:nth-child(3) {
+        background-color: blue;
+        color: #fff;
+        position: absolute;
+        top: 100px;
+        left: 100px;
+      }
+
+      div.snack-wrapper {
+        background-color: #ADADAD;
+        padding: 16px;
+        margin: 10px;
+      }
+
+      div.snack-bar {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+      }
+    </style>
   </head>
   <body>
-    <form>
-      <div>
-        <label for="txtFirstName">FirstName</label>
-        <input
-          type="text"
-          id="txtFirstName"
-          aria-label="FirstName"
-          autocomplete="given-name"
-          required
-        />
-      </div>
-      <div>
-        <label for="txtLastName">LastName</label>
-        <input
-          type="text"
-          id="txtLastName"
-          aria-label="LastName"
-          autocomplete="family-name"
-        />
-      </div>
-
-      <div>
-        <label for="txtEmail">Email</label>
-        <input
-          type="email"
-          id="txtEmail"
-          aria-label="Email"
-          autocomplete="email"
-        />
-      </div>
-
-      <div>
-        <label for="txtPassword">Password</label>
-        <input
-          type="password"
-          id="txtPassword"
-          aria-label="Password"
-          autocomplete="new-password"
-        />
-      </div>
-
-      <div>
-        <label for="txtAge">Age</label>
-        <input type="number" id="txtAge" aria-label="Name" />
-      </div>
-
-      <!-- <div>
-        <label for="txtBirthDate">BirthDate</label>
-        <input type="date" id="txtBirthDate" aria-label="BirthDate" autocomplete="bday" />
-      </div> -->
-
-      <div>
-        <label for="txtBirthDate">BirthDate</label>
-        <input
-          type="datetime-local"
-          id="txtBirthDate"
-          aria-label="BirthDate"
-          autocomplete="bday"
-        />
-      </div>
-
-      <div>
-        <label for="txtColor">Color</label>
-        <input
-          type="color"
-          id="txtColor"
-          aria-label="Color"
-          autocomplete="bday"
-        />
-      </div>
-
-      <fieldset>
-        <legend>Gender</legend>
+    <!-- <header>
         <div>
-          <input type="radio" name="gender" id="genderMale" checked />
-          <label for="genderMale">Male</label>
+            <h1>Yagnesh</h1>
+            <nav>
+              <ul>
+                <li><a href="">Item 1</a></li>
+                <li><a href="">Item 2</a></li>
+                <li><a href="">Item 3</a></li>
+                <li><a href="">Item 4</a></li>
+                <li><a href="">Item 5</a></li>
+              </ul>
+            </nav>
         </div>
-        <div>
-          <input type="radio" name="gender" id="genderFemale" />
-          <label for="genderFemale">Female</label>
+      </header> -->
+    <!-- sematic element -->
+    <main>
+      <div class="snack-bar">
+        <div class="snack-wrapper">
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Repudiandae, in?
+          </p>
         </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Hobbies</legend>
-        <div>
-          <input type="checkbox" name="hobbies" id="hobbiesCricket" checked />
-          <label for="hobbiesCricket">Cricket</label>
-        </div>
-        <div>
-          <input type="checkbox" name="hobbies" id="hobbiesFootball" />
-          <label for="hobbiesFootball">Football</label>
-        </div>
-      </fieldset>
-
-      <select>
-        <option value="">Please Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-
-      <select>
-        <optgroup label="Sports">
-          <option value="cricket">Cricket</option>
-          <option value="football">Football</option>
-        </optgroup>
-        <optgroup label="Activity">
-            <option value="dancing">Dancing</option>
-            <option value="singing">Singing</option>
-            <option value="painting">Painting</option>
-          </optgroup>
-      </select>
-
-      <div>
-        <input type="text" list="colleges">
-
-        <datalist id="colleges">
-            <option>Abc College</option>
-            <option>pqr College</option>
-            <option>lmn College</option>
-        </datalist>
-
-        <div>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-    </div>
-
-    <div>
-        <input type="range" name="" id="" min="10" max="100" multiple>
-    </div>
-
-    <div>
-        <meter min="0" max="100" low="30" high="60" value="61" />
-    </div>
-
       </div>
 
-      <!-- <div>
-        <label for="txtFile">File</label>
-        <input type="file" id="txtFile" aria-label="File" autocomplete="bday"  accept="image/png, image/jpeg" multiple />
-      </div> -->
-
-      <!-- <div>
-        <input type="search" />
-      </div>
-
-      <div>
-        <input type="tel" autocomplete="tel" />
-      </div> -->
-
-      <button type="submit">Submit</button>
-    </form>
-
-    <!-- what is use of any tag -->
-    <!--  -->
-    <!-- UI -->
-    <!-- SEO -->
-    <!-- accesibility -->
-    <!-- <h1>hello</h1>
-    <p>Lorem, <em>ipsum</em>  <strong>sit</strong> amet consectetur adipisicing elit. Dignissimos culpa ullam voluptate eius autem porro obcaecati quasi eaque quidem minima quae laboriosam itaque numquam possimus, tempore ex eos. Ab, natus?</p>
-    
-    <label for="xyz">Todo Text</label>
-    <input type="text" id="xyz"> -->
-
-    <!-- per html page we can have only and only 1 h1 tag -->
-
-    <!-- inline elements -->
-
-    <!-- <span>hello</span><em>asdfda</em> -->
-
-    <!-- block elements -->
-    <!-- <h1 style="font-size: 24px;">hello</h1>
-    <h2 style="font-size: 36px;">how are you</h2>
-    <p>Lorem ipsum dolor sit amet.</p> -->
-
-    <!-- semantic elements -->
-
-    <!-- <header></header>
-    <nav></nav>
-    <main></main>
-    <section></section>
-    <article></article>
-    <address></address>
-    <footer></footer>
-    <details>
-        <summary>hello</summary>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis doloremque architecto at quae totam consequatur vero dolores, reprehenderit tempore aut consectetur, officia nostrum molestias voluptates sed saepe dolor dolorum! Est.</p>
-    </details> -->
+      <!-- <section>
+          <div>Item 1</div>
+          <div>Item 2</div>
+          <div>Item 3</div>
+        </section>
+        <section>
+          <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim illum aliquid deleniti placeat, eum earum fuga totam labore, exercitationem quasi debitis, distinctio eius repellendus voluptatum amet facere beatae voluptate eligendi.</h2>
+        </section> -->
+    </main>
   </body>
 </html>
