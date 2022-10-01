@@ -22,27 +22,9 @@ main > section#portfolio-grid > div.wrapper {
 }
 
 main > section#portfolio-grid > div.wrapper > div {
-    background-color: tomato;
-}
-/* body{
-    display: grid;
-    grid-template: "header header" 1fr
-            "aside main" 5fr
-            "footer footer" 1fr / 1fr 4fr;
-}
-header{
-    grid-area: header;
     background-color: red;
 }
-aside{
-    grid-area: aside;
-    background-color: cyan;
-}
-main{
-    grid-area: main;
-    border-color: blue;
-}
-footer{
-    grid-area: footer;
-    background-color: tomato;
-} */
+
+main > section#portfolio-grid > div.wrapper > div:nth-child(1) {
+    grid-row: span 2;
+} 
