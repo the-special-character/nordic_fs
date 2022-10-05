@@ -1,0 +1,56 @@
+body{
+    display: grid;
+    grid-template:
+        "header header"1fr
+        "aside main"5fr
+        "footer footer" 1fr / 1fr 4fr;  /* here 1fr 5fr and 1fr are the height and 1fr and 4fr are the width*/
+        height:100vh;
+}   
+
+header {
+    grid-area: header;
+    background-color: red;
+}
+
+aside {
+    grid-area: aside;
+    background-color: gold;
+}
+
+main {
+    grid-area: main;
+    background-color: purple;
+}
+
+footer {
+    grid-area: footer;
+    background-color: blue;
+}
+
+/* body{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    height: 100vh;
+
+}
+
+header{
+    background-color: red;
+    grid-column: span 2;
+
+}
+
+aside{
+    background-color: gold;
+
+}
+
+main{
+    background-color: purple;
+}
+
+footer{
+    background-color: blue;
+    grid-column: span 2;
+} */
