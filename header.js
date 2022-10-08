@@ -1,2 +1,5 @@
-var header = document.getElementsByTagName("header");
-console.log(header);
+const a = 1;
+
+const b = 1;
+
+console.log(a + b);
