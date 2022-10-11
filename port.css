@@ -1,0 +1,5 @@
+body{
+    display: grid;
+    grid-template: 
+    "header header" 1fr;
+}
