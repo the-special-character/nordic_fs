@@ -1,0 +1,27 @@
+#services{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+section{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+#services > div{
+    height: 200px;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 420px;
+    background-color:skyblue;
+}
+div{
+    background-image: url(https://media.istockphoto.com/illustrations/blue-and-white-gradient-wave-curve-line-graphic-illustration-id1324166696?k=20&m=1324166696&s=612x612&w=0&h=R0JfgN_aYUzRVBZoLnI5qu2R-xaf03srrC36cItv_Pw=);
+    border-radius: 25px;
+  background-position: left top;
+  background-repeat: repeat;
+  padding: 20px;
+  width: 200px;
+  height: 150px;
+}
