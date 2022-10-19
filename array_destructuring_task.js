@@ -14,10 +14,18 @@ const users = {
         pin: 382480
     }
 }
-//Change age and gender using destructuring
+//Read age and gender using destructuring
 let {age, gender } = users;
 console.log(age);
 console.log(gender);
+
+//mutable approach 
+console.log(users.name['first']);
+
+//fetch first/last name using immutable
+
+const {name:{last}} = users;
+console.log(last);
 
 // Fetch the address1 with destructuring
 const {address:{address1}}= users;
