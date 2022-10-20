@@ -6,6 +6,7 @@
 #portfolio > h1 {
     text-align: center;
     margin: 5rem 0;
+    display: flexbox;
 }
 
 #portfolio > .portfolio-wrapper {
