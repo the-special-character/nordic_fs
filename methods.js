@@ -93,3 +93,7 @@ console.log(deepikaInfo);
 console.log(maleRecords);
 
 // get me all the records whoes age >= 30
+
+// list of users and i want to get all users who is > 18
+
+// filter
