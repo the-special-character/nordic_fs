@@ -15,7 +15,7 @@ const rs = () => {
         setTimeout(() => { resolve("rs resolved") }, 1000)
     })
 
-}git remote 
+}
 
 const loadData = async () => {
     try {
