@@ -1,0 +1,36 @@
+{
+  "name": "react",
+  "version": "0.0.1",
+  "description": "react_practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sethaman323/nordic_fs.git"
+  },
+  "keywords": [
+    "react",
+    "javascript",
+    "html",
+    "css"
+  ],
+  "author": "Aman <sethaman323@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sethaman323/nordic_fs/issues"
+  },
+  "homepage": "https://github.com/sethaman323/nordic_fs#readme",
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0"
+  }
+}
