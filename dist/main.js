@@ -1,0 +1,1 @@
+(()=>{"use strict";const o=new class{makeSound(){return"bow wow"}};console.log(o.makeSound()),console.log(3),console.log("hello")})();
