@@ -1,8 +1,7 @@
 export function counter() {
-    return "hello";
-  }
-  
-  // modules.exports = {
-  //   counter,
-  // };
-  
+  return "hello";
+}
+
+// modules.exports = {
+//   counter,
+// };
