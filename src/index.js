@@ -3,11 +3,18 @@
 // }
 
 // const counter = require("./app");
-import { counter } from "./app";
+import { counter } from './app';
+
+const obj = {
+  a: 1,
+  b: 2,
+};
+
+const greet = name => `hello ${name}`;
 
 class Animal {
   makeSound() {
-    return "bow wow";
+    return 'bow wow';
   }
 }
 

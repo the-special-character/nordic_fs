@@ -1,5 +1,5 @@
 export function counter() {
-  return "hello";
+  return 'hello';
 }
 
 // modules.exports = {
