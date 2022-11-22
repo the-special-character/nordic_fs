@@ -8,6 +8,9 @@ module.exports = {
     filename: 'main.js',
   },
   mode: 'development',
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
+  },
   module: {
     rules: [
       {
@@ -23,4 +26,8 @@ module.exports = {
       filename: 'index.html',
     }),
   ],
+  devServer: {
+    port: 3000,
+    open: true,
+  },
 };
