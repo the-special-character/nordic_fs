@@ -26,3 +26,4 @@ function App({ name, degisination }) {
     </>
   );
 }
+
