@@ -8,6 +8,16 @@ export default class App extends Component {
       counter: 0,
     };
   }
+  increment =()=>{
+    this.setState(({counter}))=>({
+      counter: counter+1,
+    })
+  }
+  decrement =()=>{
+    this.setState(({counter}))=>({
+      counter: counter-1,
+    })
+  }
 
   render() {
     const { counter } = this.state;
