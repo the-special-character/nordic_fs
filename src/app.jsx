@@ -94,7 +94,7 @@ export default class App extends Component {
     const { counter, greet, todoItem } = this.state;
     return (
       <div>
-        <button type="button" onClick={this.addElement}>
+        {/* <button type="button" onClick={this.addElement}>
           Add New Element
         </button>
         <div
@@ -113,7 +113,7 @@ export default class App extends Component {
               }}
             />
           ))}
-        </div>
+        </div> */}
 
         <h1 id="heading">{greet}</h1>
         <h2>{todoItem?.title}</h2>
@@ -124,7 +124,7 @@ export default class App extends Component {
         <button type="button" onClick={this.decrement}>
           -
         </button>
-        <Child1 counter={counter} />
+        {counter < 10 && <Child1 counter={counter} />}
         <Child2 />
       </div>
     );
