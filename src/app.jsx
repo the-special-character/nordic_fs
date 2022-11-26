@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Child1 from './Child1';
+import Child2 from './Child2';
 
 // Mouting
 // 1. constructor
@@ -51,6 +53,15 @@ export default class App extends Component {
     } catch (error) {}
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.counter === 3) {
+      const pTag = document.getElementsByTagName('p');
+      if (pTag.length > 0) {
+        pTag[0].style.color = 'blue';
+      }
+    }
+  }
+
   increment = () => {
     this.setState(({ counter }) => ({
       counter: counter + 1,
@@ -78,6 +89,9 @@ export default class App extends Component {
         <button type="button" onClick={this.decrement}>
           -
         </button>
+        <Child1 counter={counter} />
+        {/* {counter < 10 && <Child1 counter={counter} />} */}
+        <Child2 />
       </div>
     );
   }
