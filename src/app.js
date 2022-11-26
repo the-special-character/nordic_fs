@@ -1,10 +1,9 @@
 import React from 'react';
 // import App from './app';
-// first letter should be in upper case 
-// you can return only single Elementfrom component 
-// in line style  attribute is pass as an object 
-// insted of class use classs name 
-
+// first letter should be in upper case
+// you can return only single Elementfrom component
+// in line style  attribute is pass as an object
+// insted of class use classs name
 
 function App({ name, degisination }) {
   return (
@@ -27,3 +26,4 @@ function App({ name, degisination }) {
   );
 }
 
+export default App;
