@@ -30,16 +30,18 @@ export default class App extends Component {
       // greet: `Hello ${props.name}`,
     };
   }
-  increment =()=>{
-    this.setState(({counter}) =>({
-      counter: counter+1,
+
+  increment = () => {
+    this.setState(({ counter }) => ({
+      counter: counter + 1,
     }));
-  }
-  decrement =()=>{
-    this.setState(({counter})=>({
-      counter: counter-1,
-    }))
-  }
+  };
+
+  decrement = () => {
+    this.setState(({ counter }) => ({
+      counter: counter - 1,
+    }));
+  };
 
   // static getDerivedStateFromProps(nextProps, prevState) {
   //   console.log('getDerivedStateFromProps');
@@ -65,7 +67,9 @@ export default class App extends Component {
       const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
       const json = await res.json();
       this.setState({ todoItem: json });
-    } catch (error) {}
+    } catch (error) {
+      
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -93,7 +97,7 @@ export default class App extends Component {
     const div = document.createElement('div');
     div.style.height = '200px';
     div.style.backgroundColor = `#${(((1 << 24) * Math.random()) | 0).toString(
-      16
+      16,
     )}`;
     this.divRef.prepend(div);
   };
@@ -108,17 +112,17 @@ export default class App extends Component {
           Add New Element
         </button>
         <div
-          ref={ref => {
+          ref={(ref) => {
             this.divRef = ref;
           }}
         >
-          {[0, 1, 2, 3, 4, 5].map(x => (
+          {[0, 1, 2, 3, 4, 5].map((x) => (
             <div
               key={x}
               style={{
                 height: 200,
                 backgroundColor: `#${(((1 << 24) * Math.random()) | 0).toString(
-                  16
+                  16,
                 )}`,
               }}
             />
