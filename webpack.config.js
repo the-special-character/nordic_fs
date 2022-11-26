@@ -9,7 +9,7 @@ module.exports = {
   },
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.jsx', '.js', '.json'],
   },
   module: {
     rules: [

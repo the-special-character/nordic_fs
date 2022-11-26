@@ -31,14 +31,14 @@ export default class App extends Component {
     };
   }
   increment =()=>{
-    this.setState(({counter}))=>({
+    this.setState(({counter}) =>({
       counter: counter+1,
-    })
+    }));
   }
   decrement =()=>{
-    this.setState(({counter}))=>({
+    this.setState(({counter})=>({
       counter: counter-1,
-    })
+    }))
   }
 
   // static getDerivedStateFromProps(nextProps, prevState) {
