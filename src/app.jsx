@@ -6,17 +6,21 @@ import Child2 from './child2';
 // 1. constructor
 // 2. getDerivedStateFromProps
 // 3. render
+// 4. componentDidMount
 
 // updating
-// getDerivedStateFromProps
-// shouldComponentUpdate
-// render
-// getSnapshotBeforeUpdate
-// componentDidUpdate
+// 1. getDerivedStateFromProps
+// 2. shouldComponentUpdate
+// 3. render
+// 4. getSnapshotBeforeUpdate
+// 5. componentDidUpdate
 
 // unmounting
+// 1. componentWillUnmount
 
 // Error
+// 1. getDerivedStateFromError
+// 2. componentDidCatch
 
 // Props are immutable
 export default class App extends Component {
@@ -67,6 +71,17 @@ export default class App extends Component {
     }
   }
 
+  static getDerivedStateFromError(error) {
+    return {
+      error,
+    };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // share this info to database
+    console.log(errorInfo.componentStack);
+  }
+
   increment = () => {
     this.setState(({ counter }) => ({
       counter: counter + 1,
@@ -91,7 +106,12 @@ export default class App extends Component {
   render() {
     console.log('render');
 
-    const { counter, greet, todoItem } = this.state;
+    const { counter, greet, todoItem, error } = this.state;
+
+    if (error) {
+      return <h1>{error.message}</h1>;
+    }
+
     return (
       <div>
         {/* <button type="button" onClick={this.addElement}>
