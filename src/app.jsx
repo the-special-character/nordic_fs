@@ -111,7 +111,7 @@ export default class App extends Component {
         <button type="button" onClick={this.addElement}>
           Add New Element
         </button>
-        <div
+        {/* <div
           ref={(ref) => {
             this.divRef = ref;
           }}
@@ -127,7 +127,7 @@ export default class App extends Component {
               }}
             />
           ))}
-        </div>
+        </div> */}
 
         <h1 id="heading">{greet}</h1>
         <h2>{todoItem?.title}</h2>

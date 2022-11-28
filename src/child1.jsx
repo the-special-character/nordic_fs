@@ -6,6 +6,17 @@ export default class Child1 extends PureComponent {
   //     return shallowCompare(this, nextProps, nextState);
   //   }
 
+  componentDidMount() {
+    this.interval = setInterval(() => {
+      console.log('interval');
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousemove', Child1.mousemove);
+    clearInterval(this.interval);
+  }
+
   render() {
     const { counter } = this.props;
     console.log('child 1 render');
