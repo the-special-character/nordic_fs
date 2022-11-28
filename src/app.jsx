@@ -150,3 +150,8 @@ export default class App extends Component {
     );
   }
 }
+
+// create a component which has two child component
+// and each child component has click evnt.
+
+// if any error occurs during this click we have to handle this on parent component
