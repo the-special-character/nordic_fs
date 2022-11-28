@@ -1,14 +1,20 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './app';
+// import App from './app';
+import ToDo from './Todos';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-const greetMessage = 'Hola';
+// const greetMessage = 'Hola';
 
-App.getDerivedStateFromProps = (nextProps, prevState) => ({
-  greet: `${greetMessage} ${nextProps.name}`,
-});
+// App.getDerivedStateFromProps = (nextProps, prevState) => ({
+//   greet: `${greetMessage} ${nextProps.name}`,
+// });
 
-root.render(<App name="Seraj" />);
+root.render(
+  <div>
+    {/* <App name="Seraj" /> */}
+    <ToDo />
+  </div>
+);

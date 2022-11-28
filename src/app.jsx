@@ -62,6 +62,17 @@ export default class App extends Component {
     }
   }
 
+  static getDerivedStateFromError(error) {
+    return {
+      error,
+    };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // share this info to database
+    console.log(errorInfo.componentStack);
+  }
+
   increment = () => {
     this.setState(({ counter }) => ({
       counter: counter + 1,
@@ -77,7 +88,12 @@ export default class App extends Component {
   render() {
     console.log('render');
 
-    const { counter, greet, todoItem } = this.state;
+    const {
+      counter, greet, todoItem, error,
+    } = this.state;
+    if (error) {
+      return <h1>{error.message}</h1>;
+    }
     return (
       <div>
         <h1 id="heading">{greet}</h1>
