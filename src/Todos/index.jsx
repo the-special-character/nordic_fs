@@ -18,8 +18,9 @@ export default class Index extends Component {
     }
     return (
       <div>
-        <Child1 />
-        <Child2 />
+        {/* <Child1 />
+        <Child2 /> */}
+        <h1 className="text-red-600 text-center mt-4">Hello seraj</h1>
       </div>
     );
   }
