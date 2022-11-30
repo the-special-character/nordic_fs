@@ -1,7 +1,0 @@
-.wrapper {
-  @apply flex flex-col items-center h-screen;
-}
-
-.heading {
-  @apply text-5xl font-bold text-red-400 my-8;
-}
