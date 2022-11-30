@@ -7,6 +7,7 @@ import './todo.css';
 // if any error occurs during this click we have to handle this on parent component
 
 export default class Index extends Component {
+  // eslint-disable-next-line react/state-in-constructor
   state = {};
 
   render() {
