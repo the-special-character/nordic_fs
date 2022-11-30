@@ -7,15 +7,36 @@ import './todo.css';
 // if any error occurs during this click we have to handle this on parent component
 
 export default class Index extends Component {
-  state = {};
+  state = { todoText: '', todoList: [] };
+
+  changeTodoText = event => {
+    // console.log(event.target.value);
+    this.setState({ todoText: event.target.value });
+  };
+
+  addTodo = event => {
+    event.preventDefault();
+    this.setState(({ todoList, todoText }) => ({
+      todoList: [...todoList, todoText],
+      todoText: '',
+    }));
+
+    console.log('hello');
+  };
 
   render() {
+    const { todoText } = this.state;
     return (
       <div className="wrapper">
         <h1 className="heading">Todo App</h1>
-        <form>
-          <input type="text" className="rounded-l-md" />
-          <button type="button" className="btn rounded-l-none">
+        <form onSubmit={this.addTodo}>
+          <input
+            type="text"
+            className="rounded-l-md"
+            value={todoText}
+            onChange={this.changeTodoText}
+          />
+          <button type="submit" className="btn rounded-l-none">
             Add Todo
           </button>
         </form>
