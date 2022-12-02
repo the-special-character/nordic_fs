@@ -17,15 +17,50 @@ export default class Index extends Component {
   addTodo = event => {
     event.preventDefault();
     this.setState(({ todoList, todoText }) => ({
-      todoList: [...todoList, todoText],
+      todoList: [...todoList, {id: new Date().valueOf(),text: todoText, isDone: false}],
       todoText: '',
     }));
 
     console.log('hello');
   };
 
+
+
+  toggleComplete =(item) => {
+  //   this.setState((todoList, props) => { return { todoList: todoList.map((x) => {
+  //     if (x.id=== item.id) {
+  //       return{...x , isDone: !x.isDone};
+  //     }
+  //     return x;
+  //   })
+  // }})
+  this.setState(({todoList}) => { 
+    const index = todoList.findIndex(x => x.id===item.id);
+    return { todoList:[
+      ...todoList.slice(0, index),{...item, isDone:!item.isDone}, ...todoList.slice(index+1),
+    ] }})
+  }
+
+  deleteTodo =(item) => {
+    //   this.setState((todoList, props) => { return { todoList: todoList.map((x) => {
+    //     if (x.id=== item.id) {
+    //       return{...x , isDone: !x.isDone};
+    //     }
+    //     return x;
+    //   })
+    // }})
+    this.setState(({todoList}) => { 
+      const index = todoList.findIndex(x => x.id===item.id);
+      return { todoList:[
+        ...todoList.slice(0, index),
+        // {...item, isDone:!item.isDone},
+         ...todoList.slice(index+1),
+      ] }})
+    }
+
+
   render() {
-    const { todoText } = this.state;
+    const { todoText, todoList } = this.state;
     return (
       <div className="wrapper">
         <h1 className="heading">Todo App</h1>
@@ -41,20 +76,15 @@ export default class Index extends Component {
           </button>
         </form>
         <div className="w-full flex-1">
-          <div className="flex items-center m-4">
-            <input type="checkbox" name="" id="" />
-            <p className="flex-1 px-8">Lorem ipsum dolor sit amet.</p>
-            <button type="button" className="btn">
-              Delete
-            </button>
-          </div>
-          <div className="flex items-center m-4">
-            <input type="checkbox" name="" id="" />
-            <p className="flex-1 px-8">Lorem ipsum dolor sit amet.</p>
-            <button type="button" className="btn">
-              Delete
-            </button>
-          </div>
+          {todoList.map((item) => (
+            <div key={item.id} className="flex items-center m-4">
+              <input type="checkbox" checked={item.isDone} onChange={() => this.toggleComplete(item)} />
+              <p className="flex-1 px-8">{item.text}</p>
+              <button type="button" className="btn" onClick={() => this.deleteTodo(item)}> 
+                Delete
+              </button>
+            </div>
+          ))}
         </div>
         <div className="w-full flex">
           <button type="button" className="btn flex-1 rounded-none">
