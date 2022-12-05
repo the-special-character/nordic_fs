@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "server": "json-server"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,7 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",
+    "json-server": "^0.17.1",
     "postcss": "^8.4.19",
     "postcss-loader": "^7.0.1",
     "prettier": "2.7.1",
