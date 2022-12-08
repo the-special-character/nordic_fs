@@ -7,10 +7,6 @@ import './todo.css';
 // if any error occurs during this click we have to handle this on parent component
 
 export default class Index extends Component {
-  state = { todoList: [], filterType: 'all' };
-
-  intputTextRef = createRef();
-
   filterBtns = [
     {
       name: 'All',
@@ -26,21 +22,42 @@ export default class Index extends Component {
     },
   ];
 
-  async componentDidMount() {
-    this.loadTodo();
+  constructor(props) {
+    super(props);
+    this.state = {
+      todoList: [],
+      filterType: 'all',
+      isLoading: false,
+      hasError: false,
+    };
+    this.intputTextRef = createRef();
   }
 
-  loadTodo = async () => {
+  async componentDidMount() {
+    this.loadTodo('all');
+  }
+
+  loadTodo = async filterType => {
     try {
-      const res = await fetch('http://localhost:3000/todoList');
+      this.setState({ isLoading: true });
+      let url = 'http://localhost:3000/todoList';
+      if (filterType !== 'all') {
+        url += `?isDone=${filterType === 'completed'}`;
+      }
+      const res = await fetch(url);
       const json = await res.json();
-      console.log(json);
-      this.setState({ todoList: json });
-    } catch (error) {}
+      this.setState({ todoList: json, filterType });
+    } catch (error) {
+      console.error(error);
+      this.setState({ hasError: error });
+    } finally {
+      this.setState({ isLoading: false });
+    }
   };
 
   addTodo = async event => {
     try {
+      this.setState({ isLoading: true });
       event.preventDefault();
 
       const res = await fetch('http://localhost:3000/todoList', {
@@ -65,11 +82,16 @@ export default class Index extends Component {
           this.intputTextRef.current.value = '';
         }
       );
-    } catch (error) {}
+    } catch (error) {
+      this.setState({ hasError: error });
+    } finally {
+      this.setState({ isLoading: false });
+    }
   };
 
   toggleComplete = async item => {
     try {
+      this.setState({ isLoading: true });
       const res = await fetch(`http://localhost:3000/todoList/${item.id}`, {
         method: 'PUT',
         body: JSON.stringify({ ...item, isDone: !item.isDone }),
@@ -91,11 +113,16 @@ export default class Index extends Component {
           ],
         };
       });
-    } catch (error) {}
+    } catch (error) {
+      this.setState({ hasError: error });
+    } finally {
+      this.setState({ isLoading: false });
+    }
   };
 
   deleteTodo = async item => {
     try {
+      this.setState({ isLoading: true });
       await fetch(`http://localhost:3000/todoList/${item.id}`, {
         method: 'DELETE',
       });
@@ -106,11 +133,20 @@ export default class Index extends Component {
           todoList: [...todoList.slice(0, index), ...todoList.slice(index + 1)],
         };
       });
-    } catch (error) {}
+    } catch (error) {
+      this.setState({ hasError: error });
+    } finally {
+      this.setState({ isLoading: false });
+    }
   };
 
   render() {
-    const { todoList, filterType } = this.state;
+    const { todoList, filterType, isLoading, hasError } = this.state;
+
+    if (hasError) {
+      return <h1>Something went wrong. try after sometime</h1>;
+    }
+
     console.log('render');
     return (
       <div className="wrapper">
@@ -126,20 +162,12 @@ export default class Index extends Component {
           </button>
         </form>
         <div className="w-full flex-1">
-          {todoList
-            .filter(x => {
-              switch (filterType) {
-                case 'pending':
-                  return !x.isDone;
-
-                case 'completed':
-                  return x.isDone;
-
-                default:
-                  return true;
-              }
-            })
-            .map(item => (
+          {isLoading ? (
+            <div className="flex justify-center items-center h-full">
+              <h1 className="text-4xl text-red-400 font-bold">Loading..</h1>
+            </div>
+          ) : (
+            todoList.map(item => (
               <div key={item.id} className="flex items-center m-4">
                 <input
                   type="checkbox"
@@ -155,15 +183,18 @@ export default class Index extends Component {
                   Delete
                 </button>
               </div>
-            ))}
+            ))
+          )}
         </div>
         <div className="w-full flex">
           {this.filterBtns.map(x => (
             <button
               key={x.key}
               type="button"
-              className="btn flex-1 rounded-none"
-              onClick={() => this.setState({ filterType: x.key })}
+              className={`btn flex-1 rounded-none ${
+                filterType === x.key && 'bg-orange-500'
+              }`}
+              onClick={() => this.loadTodo(x.key)}
             >
               {x.name}
             </button>
