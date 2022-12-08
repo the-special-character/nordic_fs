@@ -1,0 +1,59 @@
+{
+  "todoList": [
+    {
+      "text": "seraj",
+      "isDone": false,
+      "id": 1
+    },
+    {
+      "text": "hello",
+      "isDone": true,
+      "id": 2
+    },
+    {
+      "text": "kumar",
+      "isDone": true,
+      "id": 4
+    },
+    {
+      "text": "seraj",
+      "isDone": false,
+      "id": 5
+    },
+    {
+      "text": "serajjj",
+      "isDone": false,
+      "id": 7
+    },
+    {
+      "text": "suraj",
+      "isDone": false,
+      "id": 8
+    },
+    {
+      "text": "sera",
+      "isDone": false,
+      "id": 9
+    },
+    {
+      "text": "seraj",
+      "isDone": false,
+      "id": 10
+    },
+    {
+      "text": "seraj",
+      "isDone": false,
+      "id": 11
+    },
+    {
+      "text": "hera",
+      "isDone": false,
+      "id": 12
+    },
+    {
+      "text": "sfsd",
+      "isDone": false,
+      "id": 15
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.wrapper {
+  @apply flex flex-col items-center h-screen;
+}
+
+.heading {
+  @apply text-5xl font-bold text-blue-400 my-8;
+}
+input {
+  border: 2px solid blue;
+  /* margin-right: 15px !important; */
+  padding: 7.3px !important;
+}
