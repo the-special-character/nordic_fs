@@ -2,7 +2,7 @@
   "todoList": [
     {
       "text": "asdfdasf",
-      "isDone": false,
+      "isDone": true,
       "id": 1
     },
     {
@@ -29,6 +29,21 @@
       "text": "asdfadsf",
       "isDone": false,
       "id": 8
+    },
+    {
+      "text": "asdfadsf",
+      "isDone": false,
+      "id": 9
+    },
+    {
+      "text": "hello",
+      "isDone": false,
+      "id": 10
+    },
+    {
+      "text": "asfadsf",
+      "isDone": true,
+      "id": 11
     }
   ]
 }

@@ -1,12 +1,15 @@
-import React, { Component, createRef } from 'react';
+import React, { createRef, PureComponent } from 'react';
 import './todo.css';
+import TodoFilter from './todoFilter';
+import TodoForm from './todoForm';
+import TodoList from './todoList';
 
 // create a component which has two child component
 // and each child component has click evnt.
 
 // if any error occurs during this click we have to handle this on parent component
 
-export default class Index extends Component {
+export default class Index extends PureComponent {
   filterBtns = [
     {
       name: 'All',
@@ -151,55 +154,17 @@ export default class Index extends Component {
     return (
       <div className="wrapper">
         <h1 className="heading">Todo App</h1>
-        <form onSubmit={this.addTodo}>
-          <input
-            type="text"
-            className="rounded-l-md"
-            ref={this.intputTextRef}
-          />
-          <button type="submit" className="btn rounded-l-none">
-            Add Todo
-          </button>
-        </form>
-        <div className="w-full flex-1">
-          {isLoading ? (
-            <div className="flex justify-center items-center h-full">
-              <h1 className="text-4xl text-red-400 font-bold">Loading..</h1>
-            </div>
-          ) : (
-            todoList.map(item => (
-              <div key={item.id} className="flex items-center m-4">
-                <input
-                  type="checkbox"
-                  checked={item.isDone}
-                  onChange={() => this.toggleComplete(item)}
-                />
-                <p className="flex-1 px-8">{item.text}</p>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => this.deleteTodo(item)}
-                >
-                  Delete
-                </button>
-              </div>
-            ))
-          )}
-        </div>
-        <div className="w-full flex">
-          {this.filterBtns.map(x => (
-            <button
-              key={x.key}
-              type="button"
-              className={`btn flex-1 rounded-none ${
-                filterType === x.key && 'bg-orange-500'
-              }`}
-              onClick={() => this.loadTodo(x.key)}
-            >
-              {x.name}
-            </button>
-          ))}
-        </div>
+        <TodoForm addTodo={this.addTodo} ref={this.intputTextRef} />
+        <TodoList
+          todoList={todoList}
+          toggleComplete={this.toggleComplete}
+          deleteTodo={this.deleteTodo}
+        />
+        <TodoFilter
+          filterBtns={this.filterBtns}
+          filterType={filterType}
+          loadTodo={this.loadTodo}
+        />
       </div>
     );
   }
