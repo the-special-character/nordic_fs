@@ -80,6 +80,9 @@ main > section#portfolio-grid > div.wrapper > div {
     background-color: red;
 }
 
+<<<<<<< HEAD
+=======
 main > section#portfolio-grid > div.wrapper > div:nth-child(1) {
     grid-row: span 2;
 } */
+>>>>>>> 0f7f6441c6a6f6a3d5d7e6f1e86ed1de08d7cb01
