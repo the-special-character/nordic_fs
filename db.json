@@ -1,4 +1,14 @@
 {
-    "todoList": []
+  "todoList": [
+    {
+      "text": "asdfdasf",
+      "isDone": false,
+      "id": 1
+    },
+    {
+      "text": "asdf",
+      "isDone": true,
+      "id": 2
+    }
+  ]
 }
-  
