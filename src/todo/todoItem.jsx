@@ -1,20 +1,20 @@
 import React, { memo } from 'react';
 
-function todoItem({ item, toggleComplete, deleteTOdo }) {
-  console.log('Todo item Render');
+function TodoItem({ item, toggleComplete, deleteTodo }) {
+  console.log('Todo Item Render');
   return (
-    <div className="flex item-center m-4">
+    <div className="flex items-center m-4">
       <input
         type="checkbox"
         checked={item.isDone}
         onChange={() => toggleComplete(item)}
       />
       <p className="flex-1 px-8">{item.text}</p>
-      <button type="button" className="btn" onClick={() => deleteTodo}>
+      <button type="button" className="btn" onClick={() => deleteTodo(item)}>
         Delete
       </button>
     </div>
   );
 }
 
-export default memo(todoItem);
+export default memo(TodoItem);
