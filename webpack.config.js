@@ -7,13 +7,21 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
   },
-  mode: "development",
+  mode: 'development',
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
+  },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
@@ -23,4 +31,8 @@ module.exports = {
       filename: 'index.html',
     }),
   ],
+  devServer: {
+    port: 8080,
+    open: true,
+  },
 };
