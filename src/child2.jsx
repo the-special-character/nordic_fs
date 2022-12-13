@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Child2 = () => {
-  console.log('child 2 render');
+function Child2() {
+  useEffect(() => {
+    const mouseMove = () => {
+      console.log('mouse moved...');
+    };
+
+    document.addEventListener('mousemove', mouseMove);
+
+    // component will unmount
+    return () => {
+      document.removeEventListener('mousemove', mouseMove);
+    };
+  }, []);
+
   return <div>Child2</div>;
-};
+}
 
 export default Child2;
