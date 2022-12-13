@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from 'react';
 import './todo.css';
 import TodoFilter from './todoFilter';
 import TodoForm from './todoForm';
@@ -11,9 +17,8 @@ function TodoApp() {
   const [hasError, setHasError] = useState(null);
   const intputTextRef = useRef();
 
-  const addTodo = async event => {
+  const addTodo = useCallback(async event => {
     try {
-      // this.setState({ isLoading: true });
       setIsLoading(true);
       event.preventDefault();
 
@@ -38,9 +43,9 @@ function TodoApp() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const toggleComplete = async item => {
+  const toggleComplete = useCallback(async item => {
     try {
       setIsLoading(true);
       const res = await fetch(`http://localhost:3000/todoList/${item.id}`, {
@@ -63,9 +68,9 @@ function TodoApp() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const deleteTodo = async item => {
+  const deleteTodo = useCallback(async item => {
     try {
       setIsLoading(true);
       await fetch(`http://localhost:3000/todoList/${item.id}`, {
@@ -80,9 +85,9 @@ function TodoApp() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const loadTodo = async ft => {
+  const loadTodo = useCallback(async ft => {
     try {
       setIsLoading(true);
       let url = 'http://localhost:3000/todoList';
@@ -98,34 +103,37 @@ function TodoApp() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadTodo('all');
   }, []);
 
-  const filterBtns = [
-    {
-      name: 'All',
-      key: 'all',
-    },
-    {
-      name: 'Pending',
-      key: 'pending',
-    },
-    {
-      name: 'Completed',
-      key: 'completed',
-    },
-  ];
+  const filterBtns = useMemo(
+    () => [
+      {
+        name: 'All',
+        key: 'all',
+      },
+      {
+        name: 'Pending',
+        key: 'pending',
+      },
+      {
+        name: 'Completed',
+        key: 'completed',
+      },
+    ],
+    []
+  );
 
-  if (hasError) {
-    return <h1>Something went wrong. try after sometime</h1>;
-  }
+  // if (hasError) {
+  //   return <h1>Something went wrong. try after sometime</h1>;
+  // }
 
-  if (isLoading) {
-    return <h1>Loading....</h1>;
-  }
+  // if (isLoading) {
+  //   return <h1>Loading....</h1>;
+  // }
 
   return (
     <div className="wrapper">
