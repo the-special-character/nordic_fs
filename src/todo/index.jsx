@@ -4,24 +4,92 @@ import React, {
   useRef,
   useCallback,
   useMemo,
+  useReducer,
 } from 'react';
 import './todo.css';
 import TodoFilter from './todoFilter';
 import TodoForm from './todoForm';
 import TodoList from './todoList';
 
+const todoInitialState = {
+  todoList: [],
+  filterType: 'all',
+  isLoading: false,
+  hasError: null,
+};
+
+const todoReducer = (state, { type, payload }) => {
+  switch (type) {
+    case 'LOAD_TODO_REQUEST':
+    case 'ADD_TODO_REQUEST':
+    case 'UPDATE_TODO_REQUEST':
+    case 'DELETE_TODO_REQUEST': {
+      return { ...state, isLoading: true };
+    }
+    case 'LOAD_TODO_SUCCESS': {
+      return { ...state, isLoading: false, ...payload };
+    }
+
+    case 'ADD_TODO_SUCCESS': {
+      return {
+        ...state,
+        isLoading: false,
+        todoList: [...state.todoList, payload],
+      };
+    }
+
+    case 'UPDATE_TODO_SUCCESS': {
+      const index = state.todoList.findIndex(x => x.id === payload.id);
+      return {
+        ...state,
+        isLoading: false,
+        todoList: [
+          ...state.todoList.slice(0, index),
+          payload,
+          ...state.todoList.slice(index + 1),
+        ],
+      };
+    }
+
+    case 'DELETE_TODO_SUCCESS': {
+      const index = state.todoList.findIndex(x => x.id === payload.id);
+      return {
+        ...state,
+        isLoading: false,
+        todoList: [
+          ...state.todoList.slice(0, index),
+          ...state.todoList.slice(index + 1),
+        ],
+      };
+    }
+
+    case 'LOAD_TODO_FAIL':
+    case 'ADD_TODO_FAIL':
+    case 'UPDATE_TODO_FAIL':
+    case 'DELETE_TODO_FAIL': {
+      return { ...state, isLoading: false, ...payload };
+    }
+
+    default:
+      return state;
+  }
+};
+
 function TodoApp() {
-  const [todoList, setTodoList] = useState([]);
-  const [filterType, setFilterType] = useState('all');
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasError, setHasError] = useState(null);
+  const [{ todoList, filterType, isLoading, hasError }, dispatch] = useReducer(
+    todoReducer,
+    todoInitialState
+  );
+  // const [todoList, setTodoList] = useState([]);
+  // const [filterType, setFilterType] = useState('all');
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [hasError, setHasError] = useState(null);
   const intputTextRef = useRef();
 
   const addTodo = useCallback(async event => {
     try {
-      setIsLoading(true);
       event.preventDefault();
-
+      dispatch({ type: 'ADD_TODO_REQUEST' });
       const res = await fetch('http://localhost:3000/todoList', {
         method: 'POST',
         body: JSON.stringify({
@@ -33,21 +101,17 @@ function TodoApp() {
           Accept: 'application/json',
         },
       });
-
       const json = await res.json();
-      setTodoList(value => [...value, json]);
-
+      dispatch({ type: 'ADD_TODO_SUCCESS', payload: json });
       intputTextRef.current.value = '';
     } catch (error) {
-      setHasError(error);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: 'ADD_TODO_FAIL', payload: { hasError: error } });
     }
   }, []);
 
   const toggleComplete = useCallback(async item => {
     try {
-      setIsLoading(true);
+      dispatch({ type: 'UPDATE_TODO_REQUEST' });
       const res = await fetch(`http://localhost:3000/todoList/${item.id}`, {
         method: 'PUT',
         body: JSON.stringify({ ...item, isDone: !item.isDone }),
@@ -56,52 +120,44 @@ function TodoApp() {
           Accept: 'application/json',
         },
       });
-
       const json = await res.json();
-
-      setTodoList(value => {
-        const index = value.findIndex(x => x.id === item.id);
-        return [...value.slice(0, index), json, ...value.slice(index + 1)];
-      });
+      dispatch({ type: 'UPDATE_TODO_SUCCESS', payload: json });
     } catch (error) {
-      setHasError(error);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: 'UPDATE_TODO_FAIL', payload: { hasError: error } });
     }
   }, []);
 
   const deleteTodo = useCallback(async item => {
     try {
-      setIsLoading(true);
+      dispatch({ type: 'DELETE_TODO_REQUEST' });
       await fetch(`http://localhost:3000/todoList/${item.id}`, {
         method: 'DELETE',
       });
-      setTodoList(value => {
-        const index = value.findIndex(x => x.id === item.id);
-        return [...value.slice(0, index), ...value.slice(index + 1)];
-      });
+      dispatch({ type: 'DELETE_TODO_SUCCESS', payload: item });
     } catch (error) {
-      setHasError(error);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: 'DELETE_TODO_FAIL', payload: { hasError: error } });
     }
   }, []);
 
   const loadTodo = useCallback(async ft => {
     try {
-      setIsLoading(true);
+      dispatch({ type: 'LOAD_TODO_REQUEST' });
+      // setIsLoading(true);
       let url = 'http://localhost:3000/todoList';
       if (ft !== 'all') {
         url += `?isDone=${ft === 'completed'}`;
       }
       const res = await fetch(url);
       const json = await res.json();
-      setTodoList(json);
-      setFilterType(ft);
+      dispatch({
+        type: 'LOAD_TODO_SUCCESS',
+        payload: {
+          todoList: json,
+          filterType: ft,
+        },
+      });
     } catch (error) {
-      setHasError(error);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: 'LOAD_TODO_FAIL', payload: { hasError: error } });
     }
   }, []);
 
@@ -127,23 +183,20 @@ function TodoApp() {
     []
   );
 
-  // if (hasError) {
-  //   return <h1>Something went wrong. try after sometime</h1>;
-  // }
-
-  // if (isLoading) {
-  //   return <h1>Loading....</h1>;
-  // }
-
   return (
     <div className="wrapper">
       <h1 className="heading">Todo App</h1>
       <TodoForm addTodo={addTodo} ref={intputTextRef} />
-      <TodoList
-        todoList={todoList}
-        toggleComplete={toggleComplete}
-        deleteTodo={deleteTodo}
-      />
+      {hasError && <p>{hasError.message}</p>}
+      {isLoading && <p>Loading...</p>}
+      {todoList && (
+        <TodoList
+          todoList={todoList}
+          toggleComplete={toggleComplete}
+          deleteTodo={deleteTodo}
+        />
+      )}
+
       <TodoFilter
         filterBtns={filterBtns}
         filterType={filterType}
