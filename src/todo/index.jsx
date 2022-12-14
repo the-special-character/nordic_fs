@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {
   useState,
   useEffect,
@@ -6,6 +7,9 @@ import React, {
   useMemo,
   useReducer,
 } from 'react';
+=======
+import React, { Component, createRef } from 'react';
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 import './todo.css';
 import TodoFilter from './todoFilter';
 import TodoForm from './todoForm';
@@ -284,7 +288,27 @@ export default TodoApp;
 
 // if any error occurs during this click we have to handle this on parent component
 
+<<<<<<< HEAD
 // export default class Index extends PureComponent {
+=======
+function Xyz() {
+  return(
+    <div>
+      <button type='button' onClick={increament}>
+        +
+      </button>
+      <button type='button' onClick={increament}>
+        -
+      </button>
+    </div>
+  )
+}
+
+// export default class Index extends Component {
+//   state = { todoList: [], filterType: 'all' };
+
+//   intputTextRef = createRef();
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //   filterBtns = [
 //     {
 //       name: 'All',
@@ -300,6 +324,7 @@ export default TodoApp;
 //     },
 //   ];
 
+<<<<<<< HEAD
 //   constructor(props) {
 //     super(props);
 //     this.state = {
@@ -331,11 +356,28 @@ export default TodoApp;
 //     } finally {
 //       this.setState({ isLoading: false });
 //     }
+=======
+//   async componentDidMount() {
+//     this.loadTodo();
+//   }
+
+//   loadTodo = async () => {
+//     try {a
+//       const res = await fetch('http://localhost:3000/todoList');
+      
+//       const json = await res.json();
+//       console.log(json);
+//       this.setState({ todoList: json });
+//     } catch (error) {}
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //   };
 
 //   addTodo = async event => {
 //     try {
+<<<<<<< HEAD
 //       this.setState({ isLoading: true });
+=======
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //       event.preventDefault();
 
 //       const res = await fetch('http://localhost:3000/todoList', {
@@ -360,16 +402,23 @@ export default TodoApp;
 //           this.intputTextRef.current.value = '';
 //         }
 //       );
+<<<<<<< HEAD
 //     } catch (error) {
 //       this.setState({ hasError: error });
 //     } finally {
 //       this.setState({ isLoading: false });
 //     }
+=======
+//     } catch (error) {}
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //   };
 
 //   toggleComplete = async item => {
 //     try {
+<<<<<<< HEAD
 //       this.setState({ isLoading: true });
+=======
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //       const res = await fetch(`http://localhost:3000/todoList/${item.id}`, {
 //         method: 'PUT',
 //         body: JSON.stringify({ ...item, isDone: !item.isDone }),
@@ -391,16 +440,23 @@ export default TodoApp;
 //           ],
 //         };
 //       });
+<<<<<<< HEAD
 //     } catch (error) {
 //       this.setState({ hasError: error });
 //     } finally {
 //       this.setState({ isLoading: false });
 //     }
+=======
+//     } catch (error) {}
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //   };
 
 //   deleteTodo = async item => {
 //     try {
+<<<<<<< HEAD
 //       this.setState({ isLoading: true });
+=======
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //       await fetch(`http://localhost:3000/todoList/${item.id}`, {
 //         method: 'DELETE',
 //       });
@@ -411,6 +467,7 @@ export default TodoApp;
 //           todoList: [...todoList.slice(0, index), ...todoList.slice(index + 1)],
 //         };
 //       });
+<<<<<<< HEAD
 //     } catch (error) {
 //       this.setState({ hasError: error });
 //     } finally {
@@ -425,10 +482,18 @@ export default TodoApp;
 //       return <h1>Something went wrong. try after sometime</h1>;
 //     }
 
+=======
+//     } catch (error) {}
+//   };
+
+//   render() {
+//     const { todoList, filterType } = this.state;
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //     console.log('render');
 //     return (
 //       <div className="wrapper">
 //         <h1 className="heading">Todo App</h1>
+<<<<<<< HEAD
 //         <TodoForm addTodo={this.addTodo} ref={this.intputTextRef} />
 //         <TodoList
 //           todoList={todoList}
@@ -440,7 +505,67 @@ export default TodoApp;
 //           filterType={filterType}
 //           loadTodo={this.loadTodo}
 //         />
+=======
+//         <form onSubmit={this.addTodo}>
+//           <input
+//             type="text"
+//             className="rounded-l-md"
+//             ref={this.intputTextRef}
+//           />
+//           <button type="submit" className="btn rounded-l-none">
+//             Add Todo
+//           </button>
+//         </form>
+//         <div className="w-full flex-1">
+//           {todoList
+//             .filter(x => {
+//               switch (filterType) {
+//                 case 'pending':
+//                   return !x.isDone;
+
+//                 case 'completed':
+//                   return x.isDone;
+
+//                 default:
+//                   return true;
+//               }
+//             })
+//             .map(item => (
+//               <div key={item.id} className="flex items-center m-4">
+//                 <input
+//                   type="checkbox"
+//                   checked={item.isDone}
+//                   onChange={() => this.toggleComplete(item)}
+//                 />
+//                 <p className="flex-1 px-8">{item.text}</p>
+//                 <button
+//                   type="button"
+//                   className="btn"
+//                   onClick={() => this.deleteTodo(item)}
+//                 >
+//                   Delete
+//                 </button>
+//               </div>
+//             ))}
+//         </div>
+//         <div className="w-full flex">
+//           {this.filterBtns.map(x => (
+//             <button
+//               key={x.key}
+//               type="button"
+//               className="btn flex-1 rounded-none"
+//               onClick={() => this.setState({ filterType: x.key })}
+//             >
+//               {x.name}
+//             </button>
+//           ))}
+//         </div>
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
 //       </div>
 //     );
 //   }
 // }
+<<<<<<< HEAD
+=======
+export default first
+>>>>>>> b9391b3415c7971ec3d3c61fa2f006b37cd7f4a6
