@@ -82,6 +82,34 @@ function TodoApp() {
     }
   };
 
+  const editTodo = async event => {
+    try {
+      // this.setState({ isLoading: true });
+      setIsLoading(true);
+      event.preventDefault();
+
+      const res = await fetch('http://localhost:3000/todoList', {
+        method: 'POST',
+        body: JSON.stringify({
+          text: intputTextRef.current.value,
+          isDone: false,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      });
+
+      const json = await res.json();
+      setTodoList(value => [...value, json]);
+
+      intputTextRef.current.value = '';
+    } catch (error) {
+      setHasError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const loadTodo = async ft => {
     try {
       setIsLoading(true);
@@ -135,6 +163,7 @@ function TodoApp() {
         todoList={todoList}
         toggleComplete={toggleComplete}
         deleteTodo={deleteTodo}
+        editTodo={editTodo}
       />
       <TodoFilter
         filterBtns={filterBtns}
