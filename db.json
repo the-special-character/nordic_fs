@@ -1,29 +1,19 @@
 {
   "todoList": [
     {
-      "text": "asfadsf",
-      "isDone": true,
-      "id": 11
-    },
-    {
-      "text": "jkbdg",
-      "isDone": true,
-      "id": 12
-    },
-    {
-      "text": "jbdg",
+      "text": "asdfa",
       "isDone": false,
-      "id": 13
+      "id": 1
     },
     {
-      "text": "bvds",
-      "isDone": false,
-      "id": 14
-    },
-    {
-      "text": "kjsafs",
+      "text": "asdfds",
       "isDone": true,
-      "id": 15
+      "id": 2
+    },
+    {
+      "text": "added through reducer",
+      "isDone": false,
+      "id": 4
     }
   ]
 }
