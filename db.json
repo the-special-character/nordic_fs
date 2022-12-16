@@ -1,0 +1,19 @@
+{
+  "todoList": [
+    {
+      "text": "asdfa",
+      "isDone": false,
+      "id": 1
+    },
+    {
+      "text": "asdfds",
+      "isDone": true,
+      "id": 2
+    },
+    {
+      "text": "added through reducer",
+      "isDone": true,
+      "id": 4
+    }
+  ]
+}
