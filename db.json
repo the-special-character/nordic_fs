@@ -12,7 +12,7 @@
     },
     {
       "text": "added through reducer",
-      "isDone": false,
+      "isDone": true,
       "id": 4
     }
   ]
