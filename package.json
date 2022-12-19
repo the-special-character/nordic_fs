@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/the-special-character/nordic_fs#readme",
   "dependencies": {
+    "@headlessui/react": "^1.7.7",
+    "@heroicons/react": "^2.0.13",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-addons-shallow-compare": "^15.6.3",
