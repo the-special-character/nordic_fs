@@ -1,20 +1,180 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './todo.css';
 import TodoFilter from './todoFilter';
 import TodoForm from './todoForm';
 import TodoList from './todoList';
-import useTodo from '../hooks/useTodo';
+
+const todoInitialState = {
+  todoList: [],
+  filterType: 'all',
+  isLoading: false,
+  hasError: null,
+};
+
+const todoReducer = (state, { type, payload }) => {
+  switch (type) {
+    case 'LOAD_TODO_REQUEST':
+    case 'ADD_TODO_REQUEST':
+    case 'UPDATE_TODO_REQUEST':
+    case 'DELETE_TODO_REQUEST': {
+      return { ...state, isLoading: true };
+    }
+    case 'LOAD_TODO_SUCCESS': {
+      return { ...state, isLoading: false, ...payload };
+    }
+
+    case 'ADD_TODO_SUCCESS': {
+      return {
+        ...state,
+        isLoading: false,
+        todoList: [...state.todoList, payload],
+      };
+    }
+
+    case 'UPDATE_TODO_SUCCESS': {
+      const index = state.todoList.findIndex(x => x.id === payload.id);
+      return {
+        ...state,
+        isLoading: false,
+        todoList: [
+          ...state.todoList.slice(0, index),
+          payload,
+          ...state.todoList.slice(index + 1),
+        ],
+      };
+    }
+
+    case 'DELETE_TODO_SUCCESS': {
+      const index = state.todoList.findIndex(x => x.id === payload.id);
+      return {
+        ...state,
+        isLoading: false,
+        todoList: [
+          ...state.todoList.slice(0, index),
+          ...state.todoList.slice(index + 1),
+        ],
+      };
+    }
+
+    case 'LOAD_TODO_FAIL':
+    case 'ADD_TODO_FAIL':
+    case 'UPDATE_TODO_FAIL':
+    case 'DELETE_TODO_FAIL': {
+      return { ...state, isLoading: false, ...payload };
+    }
+
+    default:
+      return state;
+  }
+};
 
 function TodoApp() {
-  const {
-    todoState: { hasError, isLoading, todoList, filterType },
-    addTodo,
-    toggleComplete,
-    deleteTodo,
-    loadTodo,
-    filterBtns,
-    intputTextRef,
-  } = useTodo();
+  const [{ todoList, filterType, isLoading, hasError }, dispatch] = useReducer(
+    todoReducer,
+    todoInitialState
+  );
+  // const [todoList, setTodoList] = useState([]);
+  // const [filterType, setFilterType] = useState('all');
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [hasError, setHasError] = useState(null);
+  const intputTextRef = useRef();
+
+  const addTodo = useCallback(async event => {
+    try {
+      event.preventDefault();
+      dispatch({ type: 'ADD_TODO_REQUEST' });
+      const res = await fetch('http://localhost:3000/todoList', {
+        method: 'POST',
+        body: JSON.stringify({
+          text: intputTextRef.current.value,
+          isDone: false,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      });
+      const json = await res.json();
+      dispatch({ type: 'ADD_TODO_SUCCESS', payload: json });
+      intputTextRef.current.value = '';
+    } catch (error) {
+      dispatch({ type: 'ADD_TODO_FAIL', payload: { hasError: error } });
+    }
+  }, []);
+
+  const toggleComplete = useCallback(async item => {
+    try {
+      dispatch({ type: 'UPDATE_TODO_REQUEST' });
+      const res = await fetch(`http://localhost:3000/todoList/${item.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ ...item, isDone: !item.isDone }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      });
+      const json = await res.json();
+      dispatch({ type: 'UPDATE_TODO_SUCCESS', payload: json });
+    } catch (error) {
+      dispatch({ type: 'UPDATE_TODO_FAIL', payload: { hasError: error } });
+    }
+  }, []);
+
+  const deleteTodo = useCallback(async item => {
+    try {
+      dispatch({ type: 'DELETE_TODO_REQUEST' });
+      await fetch(`http://localhost:3000/todoList/${item.id}`, {
+        method: 'DELETE',
+      });
+      dispatch({ type: 'DELETE_TODO_SUCCESS', payload: item });
+    } catch (error) {
+      dispatch({ type: 'DELETE_TODO_FAIL', payload: { hasError: error } });
+    }
+  }, []);
+
+  const loadTodo = useCallback(async ft => {
+    try {
+      dispatch({ type: 'LOAD_TODO_REQUEST' });
+      // setIsLoading(true);
+      let url = 'http://localhost:3000/todoList';
+      if (ft !== 'all') {
+        url += `?isDone=${ft === 'completed'}`;
+      }
+      const res = await fetch(url);
+      const json = await res.json();
+      dispatch({
+        type: 'LOAD_TODO_SUCCESS',
+        payload: {
+          todoList: json,
+          filterType: ft,
+        },
+      });
+    } catch (error) {
+      dispatch({ type: 'LOAD_TODO_FAIL', payload: { hasError: error } });
+    }
+  }, []);
+
+  useEffect(() => {
+    loadTodo('all');
+  }, []);
+
+  const filterBtns = useMemo(
+    () => [
+      {
+        name: 'All',
+        key: 'all',
+      },
+      {
+        name: 'Pending',
+        key: 'pending',
+      },
+      {
+        name: 'Completed',
+        key: 'completed',
+      },
+    ],
+    []
+  );
 
   return (
     <div className="wrapper">
@@ -117,163 +277,68 @@ export default TodoApp;
 
 // if any error occurs during this click we have to handle this on parent component
 
-// export default class Index extends PureComponent {
-//   filterBtns = [
-//     {
-//       name: 'All',
-//       key: 'all',
-//     },
-//     {
-//       name: 'Pending',
-//       key: 'pending',
-//     },
-//     {
-//       name: 'Completed',
-//       key: 'completed',
-//     },
-//   ];
+export default class Index extends Component {
+  state = { todoText: '', todoList: [] };
 
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       todoList: [],
-//       filterType: 'all',
-//       isLoading: false,
-//       hasError: false,
-//     };
-//     this.intputTextRef = createRef();
-//   }
+  changeTodoText = event => {
+    // console.log(event.target.value);
+    this.setState({ todoText: event.target.value });
+  };
 
-//   async componentDidMount() {
-//     this.loadTodo('all');
-//   }
+  addTodo = event => {
+    event.preventDefault();
+    this.setState(({ todoList, todoText }) => ({
+      todoList: [...todoList, todoText],
+      todoText: '',
+    }));
 
-//   loadTodo = async filterType => {
-//     try {
-//       this.setState({ isLoading: true });
-//       let url = 'http://localhost:3000/todoList';
-//       if (filterType !== 'all') {
-//         url += `?isDone=${filterType === 'completed'}`;
-//       }
-//       const res = await fetch(url);
-//       const json = await res.json();
-//       this.setState({ todoList: json, filterType });
-//     } catch (error) {
-//       console.error(error);
-//       this.setState({ hasError: error });
-//     } finally {
-//       this.setState({ isLoading: false });
-//     }
-//   };
+    console.log('hello');
+  };
 
-//   addTodo = async event => {
-//     try {
-//       this.setState({ isLoading: true });
-//       event.preventDefault();
-
-//       const res = await fetch('http://localhost:3000/todoList', {
-//         method: 'POST',
-//         body: JSON.stringify({
-//           text: this.intputTextRef.current.value,
-//           isDone: false,
-//         }),
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Accept: 'application/json',
-//         },
-//       });
-
-//       const json = await res.json();
-
-//       this.setState(
-//         ({ todoList }) => ({
-//           todoList: [...todoList, json],
-//         }),
-//         () => {
-//           this.intputTextRef.current.value = '';
-//         }
-//       );
-//     } catch (error) {
-//       this.setState({ hasError: error });
-//     } finally {
-//       this.setState({ isLoading: false });
-//     }
-//   };
-
-//   toggleComplete = async item => {
-//     try {
-//       this.setState({ isLoading: true });
-//       const res = await fetch(`http://localhost:3000/todoList/${item.id}`, {
-//         method: 'PUT',
-//         body: JSON.stringify({ ...item, isDone: !item.isDone }),
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Accept: 'application/json',
-//         },
-//       });
-
-//       const json = await res.json();
-
-//       this.setState(({ todoList }) => {
-//         const index = todoList.findIndex(x => x.id === item.id);
-//         return {
-//           todoList: [
-//             ...todoList.slice(0, index),
-//             json,
-//             ...todoList.slice(index + 1),
-//           ],
-//         };
-//       });
-//     } catch (error) {
-//       this.setState({ hasError: error });
-//     } finally {
-//       this.setState({ isLoading: false });
-//     }
-//   };
-
-//   deleteTodo = async item => {
-//     try {
-//       this.setState({ isLoading: true });
-//       await fetch(`http://localhost:3000/todoList/${item.id}`, {
-//         method: 'DELETE',
-//       });
-
-//       this.setState(({ todoList }) => {
-//         const index = todoList.findIndex(x => x.id === item.id);
-//         return {
-//           todoList: [...todoList.slice(0, index), ...todoList.slice(index + 1)],
-//         };
-//       });
-//     } catch (error) {
-//       this.setState({ hasError: error });
-//     } finally {
-//       this.setState({ isLoading: false });
-//     }
-//   };
-
-//   render() {
-//     const { todoList, filterType, isLoading, hasError } = this.state;
-
-//     if (hasError) {
-//       return <h1>Something went wrong. try after sometime</h1>;
-//     }
-
-//     console.log('render');
-//     return (
-//       <div className="wrapper">
-//         <h1 className="heading">Todo App</h1>
-//         <TodoForm addTodo={this.addTodo} ref={this.intputTextRef} />
-//         <TodoList
-//           todoList={todoList}
-//           toggleComplete={this.toggleComplete}
-//           deleteTodo={this.deleteTodo}
-//         />
-//         <TodoFilter
-//           filterBtns={this.filterBtns}
-//           filterType={filterType}
-//           loadTodo={this.loadTodo}
-//         />
-//       </div>
-//     );
-//   }
-// }
+  render() {
+    const { todoText } = this.state;
+    return (
+      <div className="wrapper">
+        <h1 className="heading">Todo App</h1>
+        <form onSubmit={this.addTodo}>
+          <input
+            type="text"
+            className="rounded-l-md"
+            value={todoText}
+            onChange={this.changeTodoText}
+          />
+          <button type="submit" className="btn rounded-l-none">
+            Add Todo
+          </button>
+        </form>
+        <div className="w-full flex-1">
+          <div className="flex items-center m-4">
+            <input type="checkbox" name="" id="" />
+            <p className="flex-1 px-8">Lorem ipsum dolor sit amet.</p>
+            <button type="button" className="btn">
+              Delete
+            </button>
+          </div>
+          <div className="flex items-center m-4">
+            <input type="checkbox" name="" id="" />
+            <p className="flex-1 px-8">Lorem ipsum dolor sit amet.</p>
+            <button type="button" className="btn">
+              Delete
+            </button>
+          </div>
+        </div>
+        <div className="w-full flex">
+          <button type="button" className="btn flex-1 rounded-none">
+            All
+          </button>
+          <button type="button" className="btn flex-1 rounded-none">
+            Pending
+          </button>
+          <button type="button" className="btn flex-1 rounded-none">
+            Completed
+          </button>
+        </div>
+      </div>
+    );
+  }
+}

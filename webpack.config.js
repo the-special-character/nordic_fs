@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
+    publicPath: '/',
   },
   mode: 'development',
   resolve: {
@@ -34,5 +35,6 @@ module.exports = {
   devServer: {
     port: 8080,
     open: true,
+    historyApiFallback: true,
   },
 };

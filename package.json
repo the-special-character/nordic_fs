@@ -24,10 +24,13 @@
   },
   "homepage": "https://github.com/the-special-character/nordic_fs#readme",
   "dependencies": {
+    "@headlessui/react": "^1.7.7",
+    "@heroicons/react": "^2.0.13",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-addons-shallow-compare": "^15.6.3",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
@@ -52,6 +55,7 @@
     "prettier": "2.7.1",
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.2.4",
+    "typescript": "^4.9.3",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1"
