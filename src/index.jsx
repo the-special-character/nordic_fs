@@ -14,6 +14,7 @@ import About from './pages/about';
 import Login from './pages/login';
 import Register from './pages/register';
 import AuthLayout from './layout/authLayout';
+import { LocaleProvider } from './context/locale';
 
 // const router = createBrowserRouter([
 //   {
@@ -37,6 +38,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
       </Route>
+
       <Route path="/auth" element={<AuthLayout />}>
         <Route index element={<Login />} />
         <Route path="register" element={<Register />} />
@@ -48,4 +50,8 @@ const router = createBrowserRouter(
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-root.render(<RouterProvider router={router} />);
+root.render(
+  <LocaleProvider>
+    <RouterProvider router={router} />
+  </LocaleProvider>
+);
