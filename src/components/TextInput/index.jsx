@@ -1,7 +1,12 @@
 import clsx from 'clsx';
 import React from 'react';
 
-function TextInput({ className, ...rest }) {
+function TextInput({
+  field, // { name, value, onChange, onBlur }
+  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  className,
+  ...rest
+}) {
   return (
     <div>
       <label htmlFor={rest.id} className="sr-only">
@@ -14,8 +19,12 @@ function TextInput({ className, ...rest }) {
             [className]: !!className,
           }
         )}
+        {...field}
         {...rest}
       />
+      {touched[field.name] && errors[field.name] && (
+        <p className="text-red-400 text-sm">{errors[field.name]}</p>
+      )}
     </div>
   );
 }

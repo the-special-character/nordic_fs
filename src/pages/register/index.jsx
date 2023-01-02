@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
-import { Formik } from 'formik';
+import { Field, Formik, Form } from 'formik';
 import TextInput from '../../components/TextInput';
 
 const wait = time =>
@@ -10,12 +10,14 @@ const wait = time =>
 
 const fields = [
   {
+    component: TextInput,
     name: 'name',
     placeholder: 'Name',
     autoComplete: 'name',
     className: 'rounded-t-md',
   },
   {
+    component: TextInput,
     name: 'age',
     placeholder: 'Age',
     type: 'number',
@@ -23,18 +25,21 @@ const fields = [
     max: 100,
   },
   {
+    component: TextInput,
     name: 'email',
     placeholder: 'Email',
     type: 'email',
     autoComplete: 'email',
   },
   {
+    component: TextInput,
     name: 'password',
     placeholder: 'Password',
     type: 'password',
     autoComplete: 'new-password',
   },
   {
+    component: TextInput,
     name: 'confirmPassword',
     placeholder: 'Confirm Password',
     type: 'password',
@@ -44,8 +49,6 @@ const fields = [
 ];
 
 function Register() {
-  const [xyz, setXyz] = useState('hello');
-
   return (
     <>
       {/* <LocaleContext.Consumer>
@@ -87,33 +90,12 @@ function Register() {
           return errors;
         }}
       >
-        {({
-          values,
-          handleChange,
-          handleSubmit,
-          handleBlur,
-          errors,
-          touched,
-          isSubmitting,
-          isValid,
-          dirty,
-        }) => (
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        {({ isSubmitting, isValid, dirty }) => (
+          <Form className="mt-8 space-y-6">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               {fields.map(field => (
-                <div>
-                  <TextInput
-                    key={field.name}
-                    value={values[field.name]}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    {...field}
-                  />
-                  {touched[field.name] && errors[field.name] && (
-                    <p className="text-red-400 text-sm">{errors[field.name]}</p>
-                  )}
-                </div>
+                <Field key={field.name} {...field} />
               ))}
             </div>
             <div>
@@ -131,7 +113,7 @@ function Register() {
                 Sign up
               </button>
             </div>
-          </form>
+          </Form>
         )}
       </Formik>
     </>
