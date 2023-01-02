@@ -2,7 +2,6 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import { LockClosedIcon } from '@heroicons/react/20/solid';
 import TextInput from '../../components/TextInput';
-import { LocaleContext } from '../../context/locale';
 
 const fields = [
   {
@@ -12,6 +11,13 @@ const fields = [
     type: 'email',
     autoComplete: 'email',
     className: 'rounded-t-md',
+    validate: value => {
+      if (!value) return 'Required...';
+      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+        return 'Invalid email address';
+      }
+      return '';
+    },
   },
   {
     component: TextInput,
@@ -20,6 +26,10 @@ const fields = [
     type: 'password',
     autoComplete: 'new-password',
     className: 'rounded-b-md',
+    validate: value => {
+      if (!value) return 'Required...';
+      return '';
+    },
   },
 ];
 
@@ -29,22 +39,6 @@ function Login() {
       initialValues={{
         email: '',
         password: '',
-      }}
-      validate={values => {
-        const errors = {};
-
-        if (!values.email) {
-          errors.email = 'Required...';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
-        }
-
-        if (!values.password) {
-          errors.password = 'Required...';
-        }
-        return errors;
       }}
     >
       {() => (
