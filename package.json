@@ -52,6 +52,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.5.0",
     "json-server": "^0.17.1",
+    "json-server-auth": "^2.1.0",
     "postcss": "^8.4.19",
     "postcss-loader": "^7.0.1",
     "prettier": "2.7.1",
