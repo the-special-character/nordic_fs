@@ -16,6 +16,7 @@ import Register from './pages/register';
 import AuthLayout from './layout/authLayout';
 import { LocaleProvider } from './context/locale';
 import { AuthProvider } from './context/authContext';
+import { ProductsProvider } from './context/productsContext';
 
 // const router = createBrowserRouter([
 //   {
@@ -35,7 +36,14 @@ import { AuthProvider } from './context/authContext';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<MainLayout />}>
+      <Route
+        path="/"
+        element={
+          <ProductsProvider>
+            <MainLayout />
+          </ProductsProvider>
+        }
+      >
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
       </Route>
