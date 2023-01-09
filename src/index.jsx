@@ -15,6 +15,8 @@ import Login from './pages/login';
 import Register from './pages/register';
 import AuthLayout from './layout/authLayout';
 import { LocaleProvider } from './context/locale';
+import { AuthProvider } from './context/authContext';
+import { ProductsProvider } from './context/productsContext';
 
 // const router = createBrowserRouter([
 //   {
@@ -34,7 +36,14 @@ import { LocaleProvider } from './context/locale';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<MainLayout />}>
+      <Route
+        path="/"
+        element={
+          <ProductsProvider>
+            <MainLayout />
+          </ProductsProvider>
+        }
+      >
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
       </Route>
@@ -51,7 +60,9 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
-  <LocaleProvider>
-    <RouterProvider router={router} />
-  </LocaleProvider>
+  <AuthProvider>
+    <LocaleProvider>
+      <RouterProvider router={router} />
+    </LocaleProvider>
+  </AuthProvider>
 );
