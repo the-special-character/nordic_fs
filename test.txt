@@ -1,9 +1,0 @@
-hello from test.txt
-
-
-git switch -C "feature/yagnesh"
-
-create new file "test_yagnesh.txt"
-
-push this file to server and create pull request
-
