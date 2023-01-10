@@ -22,21 +22,19 @@ function Home() {
     return <h1>{error.message}</h1>;
   }
 
-  console.log(products);
-
   return (
-    <div>
+    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 ">
       {products ? (
         products.map(product => (
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8">
-            <div className="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
+          <div className="grid w-full grid-cols-1 items-start gap-y-8 gap-x-6 sm:grid-cols-12 lg:gap-x-8">
+            <div className="aspect-w-2 aspect-h-3 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-3">
               <img
                 src={product.image}
                 alt={product.title}
                 className="object-cover object-center"
               />
             </div>
-            <div className="sm:col-span-8 lg:col-span-7">
+            <div className="sm:col-span-8 lg:col-span-9">
               <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">
                 {product.title}
               </h2>

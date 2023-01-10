@@ -14,6 +14,7 @@ export function ProductsProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { user } = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
 
   const loadProducts = useCallback(async () => {
     if (user?.accessToken) {
@@ -25,6 +26,9 @@ export function ProductsProvider({ children }) {
           },
         });
         const json = await res.json();
+        if (res.status === 401) {
+          logout();
+        }
         if (!res.ok) {
           throw new Error(json);
         }
