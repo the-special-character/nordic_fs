@@ -4,7 +4,6 @@ import {
   createBrowserRouter,
   RouterProvider,
   Route,
-  Link,
   createRoutesFromElements,
 } from 'react-router-dom';
 import './main.css';
@@ -17,6 +16,7 @@ import AuthLayout from './layout/authLayout';
 import { LocaleProvider } from './context/locale';
 import { AuthProvider } from './context/authContext';
 import { ProductsProvider } from './context/productsContext';
+import { CartProvider } from './context/cartContext';
 
 // const router = createBrowserRouter([
 //   {
@@ -40,7 +40,9 @@ const router = createBrowserRouter(
         path="/"
         element={
           <ProductsProvider>
-            <MainLayout />
+            <CartProvider>
+              <MainLayout />
+            </CartProvider>
           </ProductsProvider>
         }
       >
