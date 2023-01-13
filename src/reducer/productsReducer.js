@@ -4,7 +4,10 @@ export const productsInitialState = {
   error: null,
 };
 
-export const productsReducer = (state, { type, payload }) => {
+export const productsReducer = (
+  state = productsInitialState,
+  { type, payload }
+) => {
   switch (type) {
     case 'LOAD_PRODUCTS_REQUEST':
       return { ...state, loading: true };

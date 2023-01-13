@@ -4,7 +4,7 @@ export const cartInitialState = {
   error: null,
 };
 
-export const cartReducer = (state, { type, payload }) => {
+export const cartReducer = (state = cartInitialState, { type, payload }) => {
   switch (type) {
     case 'LOAD_CART_REQUEST':
     case 'ADD_CART_REQUEST':

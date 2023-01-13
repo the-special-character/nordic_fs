@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import TextInput from '../../components/TextInput';
 import AuthForm from '../../components/AuthForm';
-import { AuthContext } from '../../context/authContext';
+import { register } from '../../actions/authAction';
 
 const fields = [
   {
@@ -67,9 +68,7 @@ const fields = [
   },
 ];
 
-function Register() {
-  const { register } = useContext(AuthContext);
-
+function Register({ register }) {
   return (
     <AuthForm
       fields={fields}
@@ -94,4 +93,8 @@ function Register() {
   );
 }
 
-export default Register;
+const mapDispatchToProps = dispatch => ({
+  register: (values, actions) => register(values, actions)(dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(Register);

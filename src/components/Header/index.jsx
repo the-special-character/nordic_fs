@@ -5,9 +5,10 @@ import {
   ShoppingBagIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
+import { connect } from 'react-redux';
 import { AuthContext } from '../../context/authContext';
-import { CartContext } from '../../context/cartContext';
-import { ProductsContext } from '../../context/productsContext';
+import { deleteCart } from '../../actions/cartAction';
+import { logout } from '../../actions/authAction';
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -19,15 +20,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-function Header() {
-  const { logout } = useContext(AuthContext);
-  const {
-    deleteCart,
-    cartState: { cart },
-  } = useContext(CartContext);
-  const {
-    productsState: { products },
-  } = useContext(ProductsContext);
+function Header({
+  cart: { cart },
+  products: { products },
+  deleteCart,
+  logout,
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -347,4 +345,14 @@ function Header() {
   );
 }
 
-export default Header;
+const mapStateToProps = store => ({
+  cart: store.cart,
+  products: store.products,
+});
+
+const mapDispatchToProps = dispatch => ({
+  deleteCart: data => deleteCart(data)(dispatch),
+  logout: () => logout()(dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
