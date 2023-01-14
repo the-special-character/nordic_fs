@@ -1,11 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { LocaleContext } from '../context/locale';
-import { AuthContext } from '../context/authContext';
 
-function AuthLayout() {
+function AuthLayout({ user }) {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
 
   if (user) {
     return navigate('/');
@@ -49,4 +47,8 @@ function AuthLayout() {
   );
 }
 
-export default AuthLayout;
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(AuthLayout);

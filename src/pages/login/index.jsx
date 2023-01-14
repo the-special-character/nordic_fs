@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import TextInput from '../../components/TextInput';
 import AuthForm from '../../components/AuthForm';
-import { AuthContext } from '../../context/authContext';
+import { login } from '../../actions/authAction';
 
 const fields = [
   {
@@ -33,9 +34,7 @@ const fields = [
   },
 ];
 
-function Login() {
-  const { login } = useContext(AuthContext);
-
+function Login({ login }) {
   return (
     <AuthForm
       fields={fields}
@@ -75,4 +74,8 @@ function Login() {
   );
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => ({
+  login: (values, actions) => login(values, actions)(dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(Login);

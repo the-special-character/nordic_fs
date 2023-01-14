@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import { AuthContext } from '../context/authContext';
 
-function MainLayout() {
+function MainLayout({ user }) {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
 
   if (!user) {
     return navigate('/auth');
@@ -21,4 +20,8 @@ function MainLayout() {
   );
 }
 
-export default MainLayout;
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
+
+export default connect(mapStateToProps)(MainLayout);

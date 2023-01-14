@@ -1,26 +1,27 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
-import { ProductsContext } from '../../context/productsContext';
-import { CartContext } from '../../context/cartContext';
+import { connect } from 'react-redux';
+import { loadProducts } from '../../actions/productsAction';
+import {
+  addCart,
+  deleteCart,
+  loadCart,
+  updateCart,
+} from '../../actions/cartAction';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-function Home() {
-  const {
-    loadProducts,
-    productsState: { loading: productsLoading, products, error: productsError },
-  } = useContext(ProductsContext);
-
-  const {
-    loadCart,
-    addCart,
-    updateCart,
-    deleteCart,
-    cartState: { loading: cartLoading, cart, error: cartError },
-  } = useContext(CartContext);
-
+function Home({
+  products: { loading: productsLoading, products, error: productsError },
+  cart: { loading: cartLoading, cart, error: cartError },
+  loadProducts,
+  loadCart,
+  addCart,
+  updateCart,
+  deleteCart,
+}) {
   useEffect(() => {
     loadProducts();
     loadCart();
@@ -159,4 +160,17 @@ function Home() {
   );
 }
 
-export default Home;
+const mapStateToProps = store => ({
+  cart: store.cart,
+  products: store.products,
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadProducts: () => loadProducts()(dispatch),
+  loadCart: () => loadCart()(dispatch),
+  addCart: data => addCart(data)(dispatch),
+  updateCart: data => updateCart(data)(dispatch),
+  deleteCart: data => deleteCart(data)(dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
