@@ -37,6 +37,13 @@
       "name": "YAGNESH MODH",
       "age": 33,
       "id": 3
+    },
+    {
+      "email": "keshri093@gmail.com",
+      "password": "$2a$10$xjrXebIICtgy9Kb4BgsUAeDSCtB36r9paqZ3dzm25f/kN46v2Cgty",
+      "name": "Ritik Keshri",
+      "age": 18,
+      "id": 4
     }
   ],
   "products": [
@@ -284,18 +291,8 @@
   "cart": [
     {
       "productId": 1,
-      "quantity": 2,
-      "id": 1
-    },
-    {
-      "productId": 2,
-      "quantity": 3,
-      "id": 2
-    },
-    {
-      "productId": 3,
       "quantity": 1,
-      "id": 3
+      "id": 1
     }
   ]
 }
