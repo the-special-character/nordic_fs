@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import React from 'react';
 import { connect } from 'react-redux';
 import TextInput from '../../components/TextInput';
 import AuthForm from '../../components/AuthForm';
 import { register } from '../../actions/authAction';
+=======
+import React, { useContext } from 'react';
+import TextInput from '../../components/TextInput';
+import AuthForm from '../../components/AuthForm';
+import { AuthContext } from '../../context/authContext';
+>>>>>>> 1e1eb24a7011c5973955e6c23f91f7c387816f71
 
 const fields = [
   {
@@ -68,7 +75,13 @@ const fields = [
   },
 ];
 
+<<<<<<< HEAD
 function Register({ register }) {
+=======
+function Register() {
+  const { register } = useContext(AuthContext);
+
+>>>>>>> 1e1eb24a7011c5973955e6c23f91f7c387816f71
   return (
     <AuthForm
       fields={fields}

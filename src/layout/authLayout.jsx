@@ -1,9 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useContext, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { LocaleContext } from '../context/locale';
+import { AuthContext } from '../context/authContext';
 
-function AuthLayout({ user  }) {
+function AuthLayout() {
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   if (user) {
     return navigate('/');

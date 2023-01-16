@@ -3,58 +3,51 @@ import React, {
   useCallback,
   useContext,
   useMemo,
-  useReducer,
+  useState,
 } from 'react';
 import { AuthContext } from './authContext';
-import {
-  productsInitialState,
-  productsReducer,
-} from '../reducer/productsReducer';
 
 export const ProductsContext = createContext();
 
 export function ProductsProvider({ children }) {
-  const [productsState, dispatch] = useReducer(
-    productsReducer,
-    productsInitialState
-  );
-  const { user, logout } = useContext(AuthContext);
+  const [products, setProducts] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { user } = useContext(AuthContext);
 
   const loadProducts = useCallback(async () => {
     if (user?.accessToken) {
       try {
-        dispatch({ type: 'LOAD_PRODUCTS_REQUEST' });
-        // setLoading(true);
+        setLoading(true);
         const res = await fetch('http://localhost:3000/660/products', {
           headers: {
             Authorization: `Bearer ${user?.accessToken}`,
           },
         });
         const json = await res.json();
-        if (res.status === 401) {
-          logout();
-        }
         if (!res.ok) {
           throw new Error(json);
         }
-        dispatch({ type: 'LOAD_PRODUCTS_SUCCESS', payload: json });
+        setProducts(json);
+        setError(null);
       } catch (err) {
-        dispatch({ type: 'LOAD_PRODUCTS_FAIL', payload: err });
+        setError(err);
+      } finally {
+        setLoading(false);
       }
     } else {
-      dispatch({
-        type: 'LOAD_PRODUCTS_FAIL',
-        paylod: new Error('token is not available'),
-      });
+      setError(new Error('token is not available'));
     }
   }, [user?.accessToken]);
 
   const value = useMemo(
     () => ({
       loadProducts,
-      productsState,
+      products,
+      loading,
+      error,
     }),
-    [productsState, loadProducts]
+    [products, loading, error, loadProducts]
   );
 
   return (
