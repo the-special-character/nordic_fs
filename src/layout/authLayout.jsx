@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 
-function AuthLayout({ user }) {
+function AuthLayout({ user  }) {
   const navigate = useNavigate();
 
   if (user) {
