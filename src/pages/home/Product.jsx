@@ -3,7 +3,14 @@ import { connect } from 'react-redux';
 import Reviews from '../../components/Reviews';
 import { addCart, deleteCart, updateCart } from '../../actions/cartAction';
 
-function Product({ product, cartItem, addCart, updateCart, deleteCart }) {
+function Product({
+  product,
+  cartItem,
+  addCart,
+  updateCart,
+  deleteCart,
+  loading,
+}) {
   return (
     <div
       key={product.id}
@@ -45,8 +52,12 @@ function Product({ product, cartItem, addCart, updateCart, deleteCart }) {
                     quantity: cartItem.quantity + 1,
                   });
                 }}
+                disabled={
+                  loading['UPDATE_CART'] &&
+                  loading['UPDATE_CART'].id === product.id
+                }
                 type="button"
-                className="flex-1 w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="flex-1 w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-slate-400 disabled:cursor-wait"
               >
                 +
               </button>
@@ -65,7 +76,14 @@ function Product({ product, cartItem, addCart, updateCart, deleteCart }) {
                   }
                 }}
                 type="button"
-                className="flex-1 w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                disabled={
+                  cartItem.quantity <= 1
+                    ? loading['DELETE_CART'] &&
+                      loading['DELETE_CART'].id === product.id
+                    : loading['UPDATE_CART'] &&
+                      loading['UPDATE_CART'].id === product.id
+                }
+                className="flex-1 w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-slate-400 disabled:cursor-wait"
               >
                 -
               </button>
@@ -79,7 +97,10 @@ function Product({ product, cartItem, addCart, updateCart, deleteCart }) {
                 });
               }}
               type="button"
-              className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              disabled={
+                loading['ADD_CART'] && loading['ADD_CART'].id === product.id
+              }
+              className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:bg-slate-400 disabled:cursor-wait"
             >
               Add to bag
             </button>
@@ -94,6 +115,7 @@ const mapStateToProps = (store, { product }) => {
   const cartItem = store.cart.cart.find(x => x.productId === product.id);
   return {
     cartItem,
+    loading: store.loading,
   };
 };
 

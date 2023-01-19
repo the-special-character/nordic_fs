@@ -18,7 +18,7 @@ export const loadCart = () => async dispatch => {
 
 export const addCart = data => async dispatch => {
   try {
-    dispatch({ type: 'ADD_CART_REQUEST' });
+    dispatch({ type: 'ADD_CART_REQUEST', payload: { id: data.productId } });
     const res = await fetch('http://localhost:3000/cart', {
       method: 'POST',
       body: JSON.stringify(data),
@@ -34,13 +34,19 @@ export const addCart = data => async dispatch => {
     }
     dispatch({ type: 'ADD_CART_SUCCESS', payload: json });
   } catch (err) {
-    dispatch({ type: 'ADD_CART_FAIL', payload: err });
+    dispatch({
+      type: 'ADD_CART_FAIL',
+      payload: {
+        id: data.productId,
+        error: err.message,
+      },
+    });
   }
 };
 
 export const updateCart = data => async dispatch => {
   try {
-    dispatch({ type: 'UPDATE_CART_REQUEST' });
+    dispatch({ type: 'UPDATE_CART_REQUEST', payload: { id: data.productId } });
     const res = await fetch(`http://localhost:3000/cart/${data.id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
@@ -58,13 +64,19 @@ export const updateCart = data => async dispatch => {
     }
     dispatch({ type: 'UPDATE_CART_SUCCESS', payload: json });
   } catch (err) {
-    dispatch({ type: 'UPDATE_CART_FAIL', payload: err });
+    dispatch({
+      type: 'UPDATE_CART_FAIL',
+      payload: {
+        id: data.productId,
+        error: err.message,
+      },
+    });
   }
 };
 
 export const deleteCart = data => async dispatch => {
   try {
-    dispatch({ type: 'DELETE_CART_REQUEST' });
+    dispatch({ type: 'DELETE_CART_REQUEST', payload: { id: data.productId } });
     const res = await fetch(`http://localhost:3000/cart/${data.id}`, {
       method: 'DELETE',
     });
@@ -77,6 +89,12 @@ export const deleteCart = data => async dispatch => {
     }
     dispatch({ type: 'DELETE_CART_SUCCESS', payload: data });
   } catch (err) {
-    dispatch({ type: 'DELETE_CART_FAIL', payload: err });
+    dispatch({
+      type: 'DELETE_CART_FAIL',
+      payload: {
+        id: data.productId,
+        error: err.message,
+      },
+    });
   }
 };
